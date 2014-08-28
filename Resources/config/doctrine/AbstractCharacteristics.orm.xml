@@ -12,9 +12,7 @@
             inheritance-type="JOINED">
 
         <discriminator-column name="type" type="string" />
-        <discriminator-map>
-            <discriminator-mapping value="smartphone" class="Ekyna\Bundle\DemoBundle\Entity\SmartphoneCharacteristics" />
-        </discriminator-map>
+        <discriminator-map />
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>

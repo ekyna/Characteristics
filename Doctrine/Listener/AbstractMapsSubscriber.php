@@ -7,10 +7,10 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 
 /**
- * Class AbstractsMapsSubscriber
+ * Class AbstractMapsSubscriber
  * @package Ekyna\Component\Characteristics\Doctrine\Listener
  */
-class AbstractsMapsSubscriber implements EventSubscriber
+class AbstractMapsSubscriber implements EventSubscriber
 {
     /**
      * The abstract characteristics full qualified class name.
