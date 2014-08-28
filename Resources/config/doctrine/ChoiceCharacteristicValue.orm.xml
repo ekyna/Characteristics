@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping
+        xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                            http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="Ekyna\Component\Characteristics\Entity\ChoiceCharacteristicValue"
+            table="characteristic_choice_value"
+            repository-class="Ekyna\Component\Characteristics\Entity\ChoiceCharacteristicValueRepository">
+
+        <indexes>
+            <index name="name_idx" columns="name"/>
+        </indexes>
+
+        <unique-constraints>
+            <unique-constraint columns="name,value" name="unique_idx" />
+        </unique-constraints>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <!--
+        <one-to-many field="choices" target-entity="Ekyna\Component\Characteristics\Entity\ChoiceCharacteristic" mapped-by="choice">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+        -->
+
+        <field name="value" column="value" type="string" length="255" />
+
+        <field name="name" column="name" type="string" length="255" />
+
+    </entity>
+
+</doctrine-mapping>

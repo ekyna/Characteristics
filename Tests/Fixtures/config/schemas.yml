@@ -1,0 +1,22 @@
+schemas:
+    product:
+        title: Produit
+        groups:
+            general:
+                title: Général
+                characteristics:
+                    reference:
+                        title: Référence
+                        type: text
+                    color:
+                        title: Couleur
+                        type: choice
+                    size:
+                        title: Taille de l'écran
+                        type: number
+            network:
+                title: Réseaux
+                characteristics:
+                    wifi:
+                        title: WiFi
+                        type: boolean

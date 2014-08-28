@@ -1,0 +1,20 @@
+<div class="table-responsive">
+    <table class="{{ options.table_class }}">
+        <tbody>
+        {% for group in view.groups %}
+        <tr>
+            <th{% if group.entries|length > 1 %} rowspan="{{ group.entries|length }}"{% endif %}>{{ group.title|trans }}</th>
+            {% for entry in group.entries %}
+            {% if loop.index0 > 0 %}</tr><tr>{% endif %}
+            <td>{{ entry.definition.title|trans }}</td>
+            <td>
+                {% if options.highlight_inherited and entry.inherited %}<em>{% endif %}
+                {{ entry.value }}
+                {% if options.highlight_inherited and entry.inherited %}</em>{% endif %}
+            </td>
+            {% endfor %}
+        {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+</div>

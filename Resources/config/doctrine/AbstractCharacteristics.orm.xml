@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping
+        xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                            http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="Ekyna\Component\Characteristics\Entity\AbstractCharacteristics"
+            table="characteristics"
+            inheritance-type="JOINED">
+
+        <discriminator-column name="type" type="string" />
+        <discriminator-map>
+            <discriminator-mapping value="smartphone" class="Ekyna\Bundle\DemoBundle\Entity\SmartphoneCharacteristics" />
+        </discriminator-map>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <one-to-many field="characteristics" target-entity="Ekyna\Component\Characteristics\Entity\AbstractCharacteristic" mapped-by="characteristics" index-by="name">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+    </entity>
+
+</doctrine-mapping>
