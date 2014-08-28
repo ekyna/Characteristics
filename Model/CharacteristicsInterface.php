@@ -61,4 +61,11 @@ interface CharacteristicsInterface
      * @return CharacteristicInterface|NULL
      */
     public function getCharacteristicByName($name);
-} 
+
+    /**
+     * Returns the date of the last update.
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt();
+}

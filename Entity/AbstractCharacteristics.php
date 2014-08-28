@@ -10,7 +10,7 @@ use Ekyna\Component\Characteristics\Model\CharacteristicsInterface;
  * Class AbstractCharacteristics
  * @package Ekyna\Component\Characteristics\Entity
  */
-abstract class AbstractCharacteristics implements CharacteristicsInterface//, \IteratorAggregate, \ArrayAccess
+abstract class AbstractCharacteristics implements CharacteristicsInterface
 {
     /**
      * @var integer
@@ -21,6 +21,11 @@ abstract class AbstractCharacteristics implements CharacteristicsInterface//, \I
      * @var ArrayCollection
      */
     protected $characteristics;
+
+    /**
+     * @var \DateTime
+     */
+    protected $updatedAt;
 
     /**
      * Constructor.
@@ -103,28 +108,19 @@ abstract class AbstractCharacteristics implements CharacteristicsInterface//, \I
         return null;
     }
 
-    /*public function getIterator()
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt(\DateTime $updatedAt = null)
     {
-        return $this->characteristics;
+        $this->updatedAt = $updatedAt;
     }
 
-    public function offsetSet($name, $characteristic)
+    /**
+     * {@inheritDoc}
+     */
+    public function getUpdatedAt()
     {
-        $this->characteristics->offsetSet($name, $characteristic);
+        return $this->updatedAt;
     }
-
-    public function offsetExists($name)
-    {
-        return $this->characteristics->offsetExists($name);
-    }
-
-    public function offsetUnset($name)
-    {
-        $this->characteristics->offsetUnset($name);
-    }
-
-    public function offsetGet($name)
-    {
-        return $this->characteristics->offsetGet($name);
-    }*/
 }
