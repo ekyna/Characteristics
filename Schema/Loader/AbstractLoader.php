@@ -41,12 +41,18 @@ abstract class AbstractLoader implements LoaderInterface
             foreach ($schemaConfig['groups'] as $groupName => $groupConfig) {
                 $group = new Group($groupName, $groupConfig['title']);
                 foreach ($groupConfig['characteristics'] as $characteristicName => $characteristicConfig) {
+                    $fullName = implode(':', array($schemaName, $groupName, $characteristicName));
+                    $type = $characteristicConfig['type'];
+                    $parameters = $characteristicConfig['parameters'];
+
+                    $this->validateParameters($fullName, $type, $parameters);
+
                     $definition = new Definition(
                         $characteristicName,
-                        implode(':', array($schemaName, $groupName, $characteristicName)),
-                        $characteristicConfig['shared'],
+                        $fullName,
                         $characteristicConfig['title'],
-                        $characteristicConfig['type']
+                        $type,
+                        $parameters
                     );
                     $group->addDefinition($definition);
                 }
@@ -56,6 +62,24 @@ abstract class AbstractLoader implements LoaderInterface
         }
 
         return $schemas;
+    }
+
+    /**
+     * Validates the parameters.
+     *
+     * @param string $name
+     * @param string $type
+     * @param array $parameters
+     *
+     * @throws \InvalidArgumentException
+     */
+    private function validateParameters($name, $type, array $parameters)
+    {
+        if ($type === 'virtual') {
+            if (0 === strlen($parameters['property_path'])) {
+                throw new \InvalidArgumentException(sprintf('"property_path" parameter must be set for "virtual" characteristic "%s".', $name));
+            }
+        }
     }
 
     /**

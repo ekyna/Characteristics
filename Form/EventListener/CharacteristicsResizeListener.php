@@ -103,6 +103,9 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
             $form->add($schemaGroup->getName(), new GroupType(), array('label' => $schemaGroup->getTitle()));
             $groupForm = $form->get($schemaGroup->getName());
             foreach ($schemaGroup->getDefinitions() as $schemaDefinition) {
+                if ($schemaDefinition->getType() === 'virtual') {
+                    continue;
+                }
                 $this->appendProperForm($groupForm, $schemaDefinition);
                 $this->appendProperData($data, $schemaDefinition);
             }
@@ -134,6 +137,9 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
 
         foreach ($this->schema->getGroups() as $schemaGroup) {
             foreach ($schemaGroup->getDefinitions() as $schemaDefinition) {
+                if ($schemaDefinition->getType() === 'virtual') {
+                    continue;
+                }
                 $name = $schemaDefinition->getIdentifier();
                 if ($data->offsetExists($name)) {
                     $characteristic = $data->offsetGet($name);
@@ -232,6 +238,8 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
             case 'choice' :
                 $characteristic = new ChoiceCharacteristic();
                 break;
+            case 'virtual':
+                return;
             default:
                 throw new \InvalidArgumentException('Unexpected characteristic type.');
         }

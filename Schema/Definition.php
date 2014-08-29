@@ -19,11 +19,6 @@ class Definition
     private $fullName;
 
     /**
-     * @var bool
-     */
-    private $shared = false;
-
-    /**
      * @var string
      */
     private $title;
@@ -34,21 +29,26 @@ class Definition
     private $type;
 
     /**
+     * @var array
+     */
+    private $parameters;
+
+    /**
      * Constructor.
      *
      * @param string $name
      * @param string $fullName
-     * @param bool $shared
      * @param string $title
      * @param string $type
+     * @param array $parameters
      */
-    public function __construct($name, $fullName, $shared, $title, $type)
+    public function __construct($name, $fullName, $title, $type, array $parameters = array())
     {
         $this->name = $name;
         $this->fullName = $fullName;
-        $this->shared = $shared;
         $this->title = $title;
         $this->type = $type;
+        $this->parameters = $parameters;
     }
 
     /**
@@ -58,7 +58,7 @@ class Definition
      */
     public function getIdentifier()
     {
-        return $this->shared ? $this->name : $this->fullName;
+        return true === $this->parameters['shared'] ? $this->name : $this->fullName;
     }
 
     /**
@@ -86,6 +86,8 @@ class Definition
     }
 
     /**
+     * Sets the full name.
+     *
      * @param string $fullName
      *
      * @return Definition
@@ -98,31 +100,13 @@ class Definition
     }
 
     /**
+     * Returns the full name.
+     *
      * @return string
      */
     public function getFullName()
     {
         return $this->fullName;
-    }
-
-    /**
-     * @param boolean $shared
-     *
-     * @return Definition
-     */
-    public function setShared($shared)
-    {
-        $this->shared = (bool)$shared;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getShared()
-    {
-        return $this->shared;
     }
 
     /**
@@ -171,5 +155,43 @@ class Definition
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Sets the parameters.
+     *
+     * @param array $parameters
+     */
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters;
+    }
+
+    /**
+     * Returns the parameters.
+     *
+     * @return array
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    /**
+     * Returns the [key] parameter value.
+     *
+     * @param string $key
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return mixed
+     */
+    public function getParameter($key)
+    {
+        if (!array_key_exists($key, $this->parameters)) {
+            throw new \InvalidArgumentException(sprintf('Parameter "%s" does not exists.', $key));
+        }
+
+        return $this->parameters[$key];
     }
 }

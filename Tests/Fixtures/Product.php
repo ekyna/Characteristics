@@ -24,6 +24,11 @@ class Product
     protected $variants;
 
     /**
+     * @var \Ekyna\Component\Characteristics\Tests\Fixtures\Brand
+     */
+    protected $brand;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -81,5 +86,24 @@ class Product
     public function getVariants()
     {
         return $this->variants;
+    }
+
+    /**
+     * @param \Ekyna\Component\Characteristics\Tests\Fixtures\Brand $brand
+     * @return \Ekyna\Component\Characteristics\Tests\Fixtures\Product
+     */
+    public function setBrand(Brand $brand)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * @return \Ekyna\Component\Characteristics\Tests\Fixtures\Brand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
     }
 }

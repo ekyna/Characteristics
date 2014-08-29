@@ -14,6 +14,13 @@ schemas:
                     size:
                         title: Taille de l'écran
                         type: number
+                        parameters:
+                            format: "%s pouces"
+                    brand:
+                        title: Marque
+                        type: virtual
+                        parameters:
+                            property_path: product.brand.title
             network:
                 title: Réseaux
                 characteristics:
