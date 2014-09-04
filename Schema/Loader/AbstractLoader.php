@@ -75,10 +75,11 @@ abstract class AbstractLoader implements LoaderInterface
      */
     private function validateParameters($name, $type, array $parameters)
     {
-        if ($type === 'virtual') {
-            if (0 === strlen($parameters['property_path'])) {
-                throw new \InvalidArgumentException(sprintf('"property_path" parameter must be set for "virtual" characteristic "%s".', $name));
-            }
+        if (true === $parameters['virtual'] && 0 === count($parameters['property_paths'])) {
+            throw new \InvalidArgumentException(sprintf('"property_paths" parameter must be set for "virtual" characteristic "%s".', $name));
+        }
+        if (false === strpos($parameters['format'], '%s')) {
+            throw new \InvalidArgumentException(sprintf('"format" parameter must contain "%%s" for characteristic "%s".', $name));
         }
     }
 

@@ -74,7 +74,8 @@ abstract class AbstractCharacteristic implements CharacteristicInterface
         if ($this->isNull()) {
             return 'NC';
         }
-        return (string) $this->getValue();
+
+        return sprintf($definition->getParameter('format'), (string) $this->getValue());
     }
 
     /**

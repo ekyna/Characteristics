@@ -46,8 +46,8 @@ abstract class AbstractLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('brand', $brandDefinition->getName());
         $this->assertEquals('product:general:brand', $brandDefinition->getFullName());
         $this->assertEquals('Marque', $brandDefinition->getTitle());
-        $this->assertEquals('virtual', $brandDefinition->getType());
-        $this->assertEquals('product.brand.title', $brandDefinition->getParameter('property_path'));
+        $this->assertEquals('text', $brandDefinition->getType());
+        $this->assertEquals(array('product.brand.title'), $brandDefinition->getParameter('property_paths'));
 
         $networkGroup = $productSchema->getGroupByName('network');
         $this->assertEquals('network', $networkGroup->getName());

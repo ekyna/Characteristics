@@ -126,34 +126,40 @@ class Manager implements ManagerInterface
             foreach ($schemaGroup->getDefinitions() as $definition) {
                 $value = null;
                 $inherited = false;
-                if ($definition->getType() === 'virtual') {
+                if (true === $definition->getParameter('virtual')) {
                     $accessor = PropertyAccess::createPropertyAccessor();
-                    try {
-                        $value = $accessor->getValue($characteristics, $definition->getParameter('property_path'));
-                    } catch (\Exception $e) {
-                        $value = null;
-                    }
-                    if (null === $value && null !== $parentCharacteristics) {
+                    $propertyPaths = $definition->getParameter('property_paths');
+                    foreach($propertyPaths as $propertyPath) {
                         try {
-                            $value = $accessor->getValue($parentCharacteristics, $definition->getParameter('property_path'));
+                            if (null !== $value = $accessor->getValue($characteristics, $propertyPath)) {
+                                break;
+                            }
                         } catch (\Exception $e) {
                             $value = null;
                         }
                     }
+                    if (null === $value && null !== $parentCharacteristics) {
+                        foreach($propertyPaths as $propertyPath) {
+                            try {
+                                if (null !== $value = $accessor->getValue($parentCharacteristics, $propertyPath)) {
+                                    break;
+                                }
+                            } catch (\Exception $e) {
+                                $value = null;
+                            }
+                        }
+                    }
                 } else {
                     $characteristic = $characteristics->getCharacteristicByName($definition->getIdentifier());
-
                     if (null === $characteristic && null !== $parentCharacteristics) {
                         if (null !== $characteristic = $parentCharacteristics->getCharacteristicByName($definition->getIdentifier())) {
                             $inherited = true;
                         }
                     }
-
                     if (null !== $characteristic) {
                         $value = $characteristic->display($definition);
                     }
                 }
-
                 $entry = new Entry($definition, $value, $inherited);
                 $group->entries[] = $entry;
             }

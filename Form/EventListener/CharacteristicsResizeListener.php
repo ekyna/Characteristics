@@ -103,7 +103,7 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
             $form->add($schemaGroup->getName(), new GroupType(), array('label' => $schemaGroup->getTitle()));
             $groupForm = $form->get($schemaGroup->getName());
             foreach ($schemaGroup->getDefinitions() as $schemaDefinition) {
-                if ($schemaDefinition->getType() === 'virtual') {
+                if (true === $schemaDefinition->getParameter('virtual')) {
                     continue;
                 }
                 $this->appendProperForm($groupForm, $schemaDefinition);

@@ -18,9 +18,10 @@ schemas:
                             format: "%s pouces"
                     brand:
                         title: Marque
-                        type: virtual
+                        type: text
                         parameters:
-                            property_path: product.brand.title
+                            virtual: true
+                            property_paths: ['product.brand.title']
             network:
                 title: Réseaux
                 characteristics:
