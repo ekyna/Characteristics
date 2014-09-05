@@ -137,7 +137,7 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
 
         foreach ($this->schema->getGroups() as $schemaGroup) {
             foreach ($schemaGroup->getDefinitions() as $schemaDefinition) {
-                if ($schemaDefinition->getType() === 'virtual') {
+                if (true === $schemaDefinition->getParameter('virtual')) {
                     continue;
                 }
                 $name = $schemaDefinition->getIdentifier();
@@ -238,8 +238,6 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
             case 'choice' :
                 $characteristic = new ChoiceCharacteristic();
                 break;
-            case 'virtual':
-                return;
             default:
                 throw new \InvalidArgumentException('Unexpected characteristic type.');
         }
