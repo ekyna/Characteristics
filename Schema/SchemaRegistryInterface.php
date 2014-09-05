@@ -36,4 +36,26 @@ interface SchemaRegistryInterface
      * @return Schema[]
      */
     public function getSchemas();
+
+    /**
+     * Returns an array of Definitions matching the given type.
+     *
+     * @param string $type
+     *
+     * @return array
+     */
+    public function getDefinitionsByType($type = 'choice');
+
+    /**
+     * Returns a characteristic definition by his identifier.
+     *
+     * @param $identifier
+     *
+     * @return Definition
+     *
+     * @throws \RuntimeException
+     */
+    public function getDefinitionByIdentifier($identifier);
+
+
 }

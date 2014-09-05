@@ -74,11 +74,7 @@ class SchemaRegistry implements SchemaRegistryInterface
     }
 
     /**
-     * Returns an array of Definitions matching the given type.
-     *
-     * @param string $type
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function getDefinitionsByType($type = 'choice')
     {
@@ -100,13 +96,7 @@ class SchemaRegistry implements SchemaRegistryInterface
     }
 
     /**
-     * Returns a characteristic definition by his identifier.
-     *
-     * @param $identifier
-     *
-     * @return Definition
-     *
-     * @throws \RuntimeException
+     * {@inheritDoc}
      */
     public function getDefinitionByIdentifier($identifier)
     {
@@ -126,7 +116,11 @@ class SchemaRegistry implements SchemaRegistryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Adds a schema.
+     *
+     * @param Schema $schema
+     * @throws \Exception
+     * @return SchemaRegistry
      */
     private function addSchema(Schema $schema)
     {
@@ -140,7 +134,9 @@ class SchemaRegistry implements SchemaRegistryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Loads the schemas.
+     *
+     * @return SchemaRegistry
      */
     private function load()
     {
