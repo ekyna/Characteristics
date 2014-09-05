@@ -70,7 +70,7 @@ class CharacteristicsExtension extends \Twig_Extension
     public function renderCharacteristics(CharacteristicsInterface $characteristics, array $options = array())
     {
         $options = array_merge(array(
-            'table_class' => 'table table-striped table-bordered table-condensed',
+            'table_class' => 'table table-striped table-bordered table-condensed ekyna-characteristics',
             'highlight_inherited' => false,
         ), $options);
         return $this->template->render(array(
