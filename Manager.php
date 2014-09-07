@@ -199,7 +199,7 @@ class Manager implements ManagerInterface
             case 'number' :
                 $characteristic = new NumberCharacteristic();
                 break;
-            case 'bool' :
+            case 'boolean' :
                 $characteristic = new BooleanCharacteristic();
                 break;
             case 'datetime' :
