@@ -9,7 +9,7 @@
             <td>{{ entry.definition.title|trans }}</td>
             <td>
                 {% if options.highlight_inherited and entry.inherited %}<em>{% endif %}
-                {{ entry.value }}
+                {{ entry.value|raw }}
                 {% if options.highlight_inherited and entry.inherited %}</em>{% endif %}
             </td>
             {% endfor %}

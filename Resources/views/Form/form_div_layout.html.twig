@@ -18,7 +18,7 @@
         {% if loop.index0 > 0 %}</tr><tr>{% endif %}
         <td>{{ form_label(child) }}</td>
         <td>
-            {% if child.vars.parent_data is not sameas(null) %}<p><em>{{ child.vars.parent_data }}</em></p>{% endif %}
+            {% if child.vars.parent_data is not sameas(null) %}<p><em>{{ child.vars.parent_data|raw }}</em></p>{% endif %}
             {{ form_widget(child) }}
         </td>
     {% endfor %}
