@@ -22,7 +22,7 @@ class BooleanCharacteristic extends AbstractCharacteristic
      */
     public function setBoolean($boolean = null)
     {
-        $this->boolean = $boolean;
+        $this->boolean = null !== $boolean ? boolval($boolean) : null;
     }
 
     /**

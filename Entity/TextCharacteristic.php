@@ -23,7 +23,8 @@ class TextCharacteristic extends AbstractCharacteristic
      */
     public function setText($text = null)
     {
-        $this->text = $text !== null ? trim($text) : $text;
+        $text = trim($text);
+        $this->text = 0 < strlen($text) ? $text : null;
 
         return $this;
     }

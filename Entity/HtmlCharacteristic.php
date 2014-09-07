@@ -23,7 +23,8 @@ class HtmlCharacteristic extends AbstractCharacteristic
      */
     public function setHtml($html = null)
     {
-        $this->html = $html !== null ? trim($html) : $html;
+        $html = trim($html);
+        $this->html = 0 < strlen($html) ? $html : null;
 
         return $this;
     }
