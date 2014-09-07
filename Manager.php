@@ -212,7 +212,7 @@ class Manager implements ManagerInterface
                 throw new \InvalidArgumentException(sprintf('Invalid type "%s".', $definition->getType()));
         }
 
-        $characteristic->setName($definition->getName());
+        $characteristic->setName($definition->getIdentifier());
 
         return $characteristic;
     }
