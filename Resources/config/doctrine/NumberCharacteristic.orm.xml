@@ -7,7 +7,7 @@
 
     <entity name="Ekyna\Component\Characteristics\Entity\NumberCharacteristic">
 
-        <field name="number" column="number_value" type="integer" nullable="true" />
+        <field name="number" column="number_value" type="decimal" precision="10" scale="3" nullable="true" />
 
     </entity>
 

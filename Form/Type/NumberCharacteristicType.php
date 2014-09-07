@@ -17,9 +17,10 @@ class NumberCharacteristicType extends AbstractCharacteristicType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('number', 'integer', array(
+        $builder->add('number', 'number', array(
             'label' => false,
             'required' => false,
+            'precision' => 3,
         ));
     }
 

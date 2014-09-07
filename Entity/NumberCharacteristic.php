@@ -12,20 +12,20 @@ use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
 class NumberCharacteristic extends AbstractCharacteristic
 {
     /**
-     * @var integer
+     * @var float
      */
     private $number;
 
     /**
-     * @param int $number
+     * @param float $number
      */
     public function setNumber($number = null)
     {
-        $this->number = $number;
+        $this->number = null !== $number ? floatval($number) : null;
     }
 
     /**
-     * @return int
+     * @return float
      */
     public function getNumber()
     {
