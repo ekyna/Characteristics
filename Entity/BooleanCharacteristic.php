@@ -8,6 +8,7 @@ use Ekyna\Component\Characteristics\Schema\Definition;
 /**
  * Class BooleanCharacteristic
  * @package Ekyna\Component\Characteristics\Entity
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class BooleanCharacteristic extends AbstractCharacteristic
 {

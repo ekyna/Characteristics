@@ -1,4 +1,5 @@
 <?php
+
 namespace Ekyna\Component\Characteristics\Entity;
 
 use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
@@ -8,6 +9,7 @@ use Ekyna\Component\Characteristics\Schema\Definition;
 /**
  * Class AbstractCharacteristic
  * @package Ekyna\Component\Characteristics\Entity
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 abstract class AbstractCharacteristic implements CharacteristicInterface
 {

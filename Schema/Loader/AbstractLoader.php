@@ -12,6 +12,7 @@ use Symfony\Component\Config\Loader\LoaderResolverInterface;
 /**
  * Class AbstractLoader
  * @package Ekyna\Component\Characteristics\Schema\Loader
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 abstract class AbstractLoader implements LoaderInterface
 {
@@ -24,7 +25,6 @@ abstract class AbstractLoader implements LoaderInterface
      * Creates and returns a Schema from the given configuration array.
      *
      * @param array $configuration
-     *
      * @return Schema[]
      */
     protected function createSchemas(array $configuration)
@@ -70,15 +70,18 @@ abstract class AbstractLoader implements LoaderInterface
      * @param string $name
      * @param string $type
      * @param array $parameters
-     *
      * @throws \InvalidArgumentException
      */
-    private function validateParameters($name, $type, array $parameters)
+    private function validateParameters($name, $type, array &$parameters)
     {
         if (true === $parameters['virtual'] && 0 === count($parameters['property_paths'])) {
             throw new \InvalidArgumentException(sprintf('"property_paths" parameter must be set for "virtual" characteristic "%s".', $name));
         }
-        if (false === strpos($parameters['format'], '%s')) {
+        if ($type === 'datetime') {
+            if ($parameters['format'] === '%s') {
+                $parameters['format'] = '%d/%m/%Y';
+            }
+        } elseif (false === strpos($parameters['format'], '%s')) {
             throw new \InvalidArgumentException(sprintf('"format" parameter must contain "%%s" for characteristic "%s".', $name));
         }
     }

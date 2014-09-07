@@ -9,6 +9,7 @@ use Ekyna\Component\Characteristics\Model\CharacteristicsInterface;
 /**
  * Class AbstractCharacteristics
  * @package Ekyna\Component\Characteristics\Entity
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 abstract class AbstractCharacteristics implements CharacteristicsInterface
 {

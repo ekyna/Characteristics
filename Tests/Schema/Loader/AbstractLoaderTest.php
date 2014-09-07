@@ -49,6 +49,12 @@ abstract class AbstractLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('text', $brandDefinition->getType());
         $this->assertEquals(array('product.brand.title'), $brandDefinition->getParameter('property_paths'));
 
+        $releaseDateDefinition = $generalGroup->getDefinitionByName('release_date');
+        $this->assertEquals('release_date', $releaseDateDefinition->getName());
+        $this->assertEquals('product:general:release_date', $releaseDateDefinition->getFullName());
+        $this->assertEquals('Date de sortie', $releaseDateDefinition->getTitle());
+        $this->assertEquals('datetime', $releaseDateDefinition->getType());
+
         $networkGroup = $productSchema->getGroupByName('network');
         $this->assertEquals('network', $networkGroup->getName());
         $this->assertEquals('Réseaux', $networkGroup->getTitle());
@@ -58,5 +64,11 @@ abstract class AbstractLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('product:network:wifi', $wifiDefinition->getFullName());
         $this->assertEquals('WiFi', $wifiDefinition->getTitle());
         $this->assertEquals('boolean', $wifiDefinition->getType());
+
+        $accessoriesDefinition = $networkGroup->getDefinitionByName('accessories');
+        $this->assertEquals('accessories', $accessoriesDefinition->getName());
+        $this->assertEquals('product:network:accessories', $accessoriesDefinition->getFullName());
+        $this->assertEquals('Accessoires', $accessoriesDefinition->getTitle());
+        $this->assertEquals('html', $accessoriesDefinition->getType());
     }
 }

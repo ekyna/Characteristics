@@ -4,6 +4,8 @@ namespace Ekyna\Component\Characteristics;
 
 use Ekyna\Component\Characteristics\Entity\BooleanCharacteristic;
 use Ekyna\Component\Characteristics\Entity\ChoiceCharacteristic;
+use Ekyna\Component\Characteristics\Entity\DatetimeCharacteristic;
+use Ekyna\Component\Characteristics\Entity\HtmlCharacteristic;
 use Ekyna\Component\Characteristics\Entity\NumberCharacteristic;
 use Ekyna\Component\Characteristics\Entity\TextCharacteristic;
 use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
@@ -157,7 +159,7 @@ class Manager implements ManagerInterface
                         }
                     }
                     if (null !== $characteristic) {
-                        $value = $characteristic->display($definition);
+                        $value = (string) $characteristic->display($definition);
                     }
                 }
                 $entry = new Entry($definition, $value, $inherited);
@@ -175,7 +177,7 @@ class Manager implements ManagerInterface
     public function buildCharacteristicValue(CharacteristicInterface $characteristic, Definition $definition)
     {
         // TODO
-        return (string)$characteristic->getValue();
+        return (string) $characteristic->display($definition);
     }
 
     /**
@@ -191,11 +193,17 @@ class Manager implements ManagerInterface
             case 'text' :
                 $characteristic = new TextCharacteristic();
                 break;
+            case 'html' :
+                $characteristic = new HtmlCharacteristic();
+                break;
             case 'number' :
                 $characteristic = new NumberCharacteristic();
                 break;
             case 'bool' :
                 $characteristic = new BooleanCharacteristic();
+                break;
+            case 'datetime' :
+                $characteristic = new DatetimeCharacteristic();
                 break;
             case 'choice' :
                 $characteristic = new ChoiceCharacteristic();

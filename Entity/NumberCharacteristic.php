@@ -7,6 +7,7 @@ use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
 /**
  * Class NumberCharacteristic
  * @package Ekyna\Component\Characteristics\Entity
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class NumberCharacteristic extends AbstractCharacteristic
 {

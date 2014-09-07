@@ -6,6 +6,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class ChoiceCharacteristicValueType
+ * @package Ekyna\Component\Characteristics\Form\Type
+ * @author Étienne Dauvergne <contact@ekyna.com>
+ */
 class ChoiceCharacteristicValueType extends AbstractType
 {
     /**

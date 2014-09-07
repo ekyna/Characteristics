@@ -8,6 +8,7 @@ use Ekyna\Component\Characteristics\Schema\Definition;
 /**
  * Class ChoiceCharacteristicValueRepository
  * @package Ekyna\Component\Characteristics\Entity
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class ChoiceCharacteristicValueRepository extends EntityRepository
 {

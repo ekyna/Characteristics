@@ -6,18 +6,18 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Class TextCharacteristicType
+ * Class DatetimeCharacteristicType
  * @package Ekyna\Component\Characteristics\Form\Type
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
-class TextCharacteristicType extends AbstractCharacteristicType
+class DatetimeCharacteristicType extends AbstractCharacteristicType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('text', 'text', array(
+        $builder->add('datetime', 'datetime', array(
             'label' => false,
             'required' => false,
         ));
@@ -31,7 +31,7 @@ class TextCharacteristicType extends AbstractCharacteristicType
         parent::setDefaultOptions($resolver);
 
         $resolver->setDefaults(array(
-            'data_class' => 'Ekyna\Component\Characteristics\Entity\TextCharacteristic'
+            'data_class' => 'Ekyna\Component\Characteristics\Entity\DatetimeCharacteristic'
         ));
     }
 
@@ -40,6 +40,6 @@ class TextCharacteristicType extends AbstractCharacteristicType
      */
     public function getName()
     {
-        return 'ekyna_text_characteristic';
+        return 'ekyna_datetime_characteristic';
     }
 } 

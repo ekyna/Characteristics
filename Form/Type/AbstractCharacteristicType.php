@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 /**
  * Class AbstractCharacteristicType
  * @package Ekyna\Component\Characteristics\Form\Type
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 abstract class AbstractCharacteristicType extends AbstractType
 {

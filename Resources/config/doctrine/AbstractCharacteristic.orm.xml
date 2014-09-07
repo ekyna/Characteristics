@@ -18,8 +18,10 @@
 
         <discriminator-map>
             <discriminator-mapping value="text" class="Ekyna\Component\Characteristics\Entity\TextCharacteristic" />
+            <discriminator-mapping value="html" class="Ekyna\Component\Characteristics\Entity\HtmlCharacteristic" />
             <discriminator-mapping value="number" class="Ekyna\Component\Characteristics\Entity\NumberCharacteristic" />
             <discriminator-mapping value="boolean" class="Ekyna\Component\Characteristics\Entity\BooleanCharacteristic" />
+            <discriminator-mapping value="datetime" class="Ekyna\Component\Characteristics\Entity\DatetimeCharacteristic" />
             <discriminator-mapping value="choice" class="Ekyna\Component\Characteristics\Entity\ChoiceCharacteristic" />
         </discriminator-map>
 

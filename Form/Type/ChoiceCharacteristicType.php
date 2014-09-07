@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 /**
  * Class ChoiceCharacteristicType
  * @package Ekyna\Component\Characteristics\Form\Type
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class ChoiceCharacteristicType extends AbstractCharacteristicType
 {

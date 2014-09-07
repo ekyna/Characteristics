@@ -5,9 +5,7 @@
         xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                             http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity
-            name="Ekyna\Component\Characteristics\Entity\TextCharacteristic"
-            table="characteristic_text">
+    <entity name="Ekyna\Component\Characteristics\Entity\TextCharacteristic">
 
         <field name="text" column="text_value" type="string" length="255" nullable="true" />
 

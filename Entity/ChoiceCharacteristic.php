@@ -7,6 +7,7 @@ use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
 /**
  * Class ChoiceCharacteristic
  * @package Ekyna\Component\Characteristics\Entity
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class ChoiceCharacteristic extends AbstractCharacteristic
 {

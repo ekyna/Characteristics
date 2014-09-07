@@ -36,7 +36,7 @@ class SchemaConfiguration implements ConfigurationInterface
                                             ->scalarNode('type')
                                                 ->isRequired()
                                                 ->validate()
-                                                ->ifNotInArray(array('text', 'number', 'boolean', 'choice'))
+                                                ->ifNotInArray(array('text', 'html', 'number', 'boolean', 'datetime', 'choice'))
                                                 ->thenInvalid('Invalid characteristic type "%s".')
                                                 ->end()
                                             ->end()

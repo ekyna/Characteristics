@@ -4,10 +4,6 @@ namespace Ekyna\Component\Characteristics\Form\EventListener;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
-use Ekyna\Component\Characteristics\Entity\BooleanCharacteristic;
-use Ekyna\Component\Characteristics\Entity\ChoiceCharacteristic;
-use Ekyna\Component\Characteristics\Entity\NumberCharacteristic;
-use Ekyna\Component\Characteristics\Entity\TextCharacteristic;
 use Ekyna\Component\Characteristics\Form\Type\GroupType;
 use Ekyna\Component\Characteristics\ManagerInterface;
 use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
@@ -23,6 +19,7 @@ use Symfony\Component\Form\FormInterface;
 /**
  * Class CharacteristicsResizeListener
  * @package Ekyna\Component\Characteristics\Form\EventListener
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class CharacteristicsResizeListener implements EventSubscriberInterface
 {
@@ -77,9 +74,7 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
      * Pre set data event handler.
      *
      * @param \Symfony\Component\Form\FormEvent $event
-     *
      * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
-     *
      * @throws \InvalidArgumentException
      */
     public function preSetData(FormEvent $event)
@@ -118,9 +113,7 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
      * Submit event handler.
      *
      * @param \Symfony\Component\Form\FormEvent $event
-     *
      * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
-     *
      * @throws \RuntimeException
      */
     public function onSubmit(FormEvent $event)
@@ -162,7 +155,6 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
      * Returns whether the characteristic is null or equals parent's or not.
      *
      * @param \Ekyna\Component\Characteristics\Model\CharacteristicInterface $characteristic
-     *
      * @return bool
      */
     private function isNullOrEqualsParentData(CharacteristicInterface $characteristic)
@@ -181,7 +173,6 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
      * Appends a form that matches the characteristic type.
      *
      * @param \Symfony\Component\Form\FormInterface $form
-     *
      * @param \Ekyna\Component\Characteristics\Schema\Definition $definition
      */
     private function appendProperForm(FormInterface $form, Definition $definition)
@@ -213,9 +204,7 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
      * Fills the data with the proper characteristic type.
      *
      * @param \Doctrine\Common\Collections\Collection $data
-     *
      * @param \Ekyna\Component\Characteristics\Schema\Definition $definition
-     *
      * @throws \InvalidArgumentException
      */
     private function appendProperData(Collection $data, Definition $definition)
@@ -224,24 +213,7 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
         if ($data->offsetExists($name)) {
             return;
         }
-        $characteristic = null;
-        switch ($definition->getType()) {
-            case 'text' :
-                $characteristic = new TextCharacteristic();
-                break;
-            case 'number' :
-                $characteristic = new NumberCharacteristic();
-                break;
-            case 'boolean' :
-                $characteristic = new BooleanCharacteristic();
-                break;
-            case 'choice' :
-                $characteristic = new ChoiceCharacteristic();
-                break;
-            default:
-                throw new \InvalidArgumentException('Unexpected characteristic type.');
-        }
-        $characteristic->setName($name);
+        $characteristic = $this->manager->createCharacteristicFromDefinition($definition);
         $data->set($name, $characteristic);
     }
 }

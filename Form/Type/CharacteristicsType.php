@@ -15,6 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 /**
  * Class CharacteristicsType
  * @package Ekyna\Component\Characteristics\Form\Type
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class CharacteristicsType extends AbstractType
 {

@@ -22,9 +22,15 @@ schemas:
                         parameters:
                             virtual: true
                             property_paths: ['product.brand.title']
+                    release_date:
+                        title: Date de sortie
+                        type: datetime
             network:
                 title: Réseaux
                 characteristics:
                     wifi:
                         title: WiFi
                         type: boolean
+                    accessories:
+                        title: Accessoires
+                        type: html

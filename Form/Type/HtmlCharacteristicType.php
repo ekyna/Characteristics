@@ -6,20 +6,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Class TextCharacteristicType
+ * Class HtmlCharacteristicType
  * @package Ekyna\Component\Characteristics\Form\Type
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
-class TextCharacteristicType extends AbstractCharacteristicType
+class HtmlCharacteristicType extends AbstractCharacteristicType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('text', 'text', array(
+        $builder->add('html', 'textarea', array(
             'label' => false,
             'required' => false,
+            'attr' => array(
+                'class' => 'tinymce',
+                'data-theme' => 'simple',
+            )
         ));
     }
 
@@ -31,7 +35,7 @@ class TextCharacteristicType extends AbstractCharacteristicType
         parent::setDefaultOptions($resolver);
 
         $resolver->setDefaults(array(
-            'data_class' => 'Ekyna\Component\Characteristics\Entity\TextCharacteristic'
+            'data_class' => 'Ekyna\Component\Characteristics\Entity\HtmlCharacteristic'
         ));
     }
 
@@ -40,6 +44,6 @@ class TextCharacteristicType extends AbstractCharacteristicType
      */
     public function getName()
     {
-        return 'ekyna_text_characteristic';
+        return 'ekyna_html_characteristic';
     }
 } 

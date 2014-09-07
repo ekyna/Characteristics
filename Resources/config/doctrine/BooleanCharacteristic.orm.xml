@@ -5,9 +5,7 @@
         xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                             http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity
-            name="Ekyna\Component\Characteristics\Entity\BooleanCharacteristic"
-            table="characteristic_boolean">
+    <entity name="Ekyna\Component\Characteristics\Entity\BooleanCharacteristic">
 
         <field name="boolean" column="boolean_value" type="boolean" nullable="true" />
 

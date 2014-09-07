@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 /**
  * Class BooleanCharacteristicType
  * @package Ekyna\Component\Characteristics\Form\Type
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 class BooleanCharacteristicType extends AbstractCharacteristicType
 {

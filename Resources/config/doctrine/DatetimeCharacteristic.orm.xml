@@ -5,9 +5,9 @@
         xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                             http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Ekyna\Component\Characteristics\Entity\NumberCharacteristic">
+    <entity name="Ekyna\Component\Characteristics\Entity\DatetimeCharacteristic">
 
-        <field name="number" column="number_value" type="integer" nullable="true" />
+        <field name="datetime" column="datetime_value" type="datetime" nullable="true" />
 
     </entity>
 

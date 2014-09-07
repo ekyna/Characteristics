@@ -5,25 +5,25 @@ namespace Ekyna\Component\Characteristics\Entity;
 use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
 
 /**
- * Class TextCharacteristic
+ * Class HtmlCharacteristic
  * @package Ekyna\Component\Characteristics\Entity
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
-class TextCharacteristic extends AbstractCharacteristic
+class HtmlCharacteristic extends AbstractCharacteristic
 {
     /**
      * @var string
      */
-    private $text;
+    private $html;
 
     /**
-     * @param string $text
+     * @param string $html
      *
-     * @return TextCharacteristic
+     * @return HtmlCharacteristic
      */
-    public function setText($text = null)
+    public function setHtml($html = null)
     {
-        $this->text = $text !== null ? trim($text) : $text;
+        $this->html = $html !== null ? trim($html) : $html;
 
         return $this;
     }
@@ -31,9 +31,9 @@ class TextCharacteristic extends AbstractCharacteristic
     /**
      * @return string
      */
-    public function getText()
+    public function getHtml()
     {
-        return $this->text;
+        return $this->html;
     }
 
     /**
@@ -41,7 +41,7 @@ class TextCharacteristic extends AbstractCharacteristic
      */
     public function getValue()
     {
-        return $this->text;
+        return $this->html;
     }
 
     /**
@@ -49,8 +49,8 @@ class TextCharacteristic extends AbstractCharacteristic
      */
     public function equals(CharacteristicInterface $characteristic)
     {
-        return ($characteristic instanceof TextCharacteristic)
-            && ($characteristic->getText() === $this->text);
+        return ($characteristic instanceof HtmlCharacteristic)
+            && ($characteristic->getHtml() === $this->html);
     }
 
     /**
@@ -58,6 +58,6 @@ class TextCharacteristic extends AbstractCharacteristic
      */
     public function isNull()
     {
-        return 0 === strlen($this->text);
+        return 0 === strlen($this->html);
     }
 }
