@@ -31,7 +31,7 @@
 
         <field name="name" column="name" type="string" length="255" />
 
-        <many-to-one field="characteristics" target-entity="Ekyna\Component\Characteristics\Entity\AbstractCharacteristics" inversed-by="characteristics">
+        <many-to-one field="characteristics" target-entity="Ekyna\Component\Characteristics\Entity\AbstractCharacteristics" inversed-by="characteristics" orphan-removal="true">
             <join-column name="characteristics_id" referenced-column-name="id" on-delete="CASCADE" nullable="false" />
         </many-to-one>
 
