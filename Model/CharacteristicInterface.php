@@ -7,6 +7,7 @@ use Ekyna\Component\Characteristics\Schema\Definition;
 /**
  * Interface CharacteristicInterface
  * @package Ekyna\Component\Characteristics\Model
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 interface CharacteristicInterface
 {
@@ -14,6 +15,7 @@ interface CharacteristicInterface
      * Sets the name.
      *
      * @param string $name
+     * @return \Ekyna\Component\Characteristics\Model\CharacteristicsInterface
      */
     public function setName($name);
 
@@ -55,6 +57,24 @@ interface CharacteristicInterface
     public function getValue();
 
     /**
+     * Sets the value.
+     *
+     * @param mixed
+     *
+     * @return \Ekyna\Component\Characteristics\Model\CharacteristicsInterface
+     */
+    public function setValue($value = null);
+
+    /**
+     * Returns whether the characteristic support the value type.
+     *
+     * @param mixed
+     *
+     * @return bool
+     */
+    public function supports($value = null);
+
+    /**
      * Returns whether the given characteristic equals this one or not.
      *
      * @param CharacteristicInterface $characteristic
@@ -69,4 +89,11 @@ interface CharacteristicInterface
      * @return mixed
      */
     public function isNull();
+
+    /**
+     * Returns the type string representation.
+     *
+     * @return mixed
+     */
+    public function getType();
 }

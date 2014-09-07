@@ -151,6 +151,10 @@ class Manager implements ManagerInterface
                             }
                         }
                     }
+                    if ($value !== null) {
+                        $characteristic = $this->createCharacteristicFromDefinition($definition, $value);
+                        $value = (string) $characteristic->display($definition);
+                    }
                 } else {
                     $characteristic = $characteristics->getCharacteristicByName($definition->getIdentifier());
                     if (null === $characteristic && null !== $parentCharacteristics) {
@@ -183,7 +187,7 @@ class Manager implements ManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function createCharacteristicFromDefinition(Definition $definition)
+    public function createCharacteristicFromDefinition(Definition $definition, $value = null)
     {
         $characteristic = null;
 
@@ -212,7 +216,10 @@ class Manager implements ManagerInterface
                 throw new \InvalidArgumentException(sprintf('Invalid type "%s".', $definition->getType()));
         }
 
-        $characteristic->setName($definition->getIdentifier());
+        $characteristic
+            ->setName($definition->getIdentifier())
+            ->setValue($value)
+        ;
 
         return $characteristic;
     }

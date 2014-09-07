@@ -2,6 +2,7 @@
 
 namespace Ekyna\Component\Characteristics\Entity;
 
+use Ekyna\Component\Characteristics\Exception\UnexpectedValueException;
 use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
 use Ekyna\Component\Characteristics\Schema\Definition;
 
@@ -18,14 +19,21 @@ class BooleanCharacteristic extends AbstractCharacteristic
     protected $boolean;
 
     /**
+     * Sets the boolean.
+     *
      * @param boolean $boolean
+     * @return BooleanCharacteristic
      */
     public function setBoolean($boolean = null)
     {
         $this->boolean = null !== $boolean ? (bool) $boolean : null;
+
+        return $this;
     }
 
     /**
+     * Returns the boolean.
+     *
      * @return boolean
      */
     public function getBoolean()
@@ -36,20 +44,31 @@ class BooleanCharacteristic extends AbstractCharacteristic
     /**
      * {@inheritdoc}
      */
-    public function display(Definition $definition)
+    public function getValue()
     {
-        if (!$this->isNull()) {
-             return $this->boolean ? 'Oui' : 'Non';
-        }
-        return parent::display($definition);
+        return $this->getBoolean();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getValue()
+    public function setValue($value = null)
     {
-        return $this->boolean;
+        if ($this->supports($value)) {
+            return $this->setBoolean($value);
+        }
+        throw new UnexpectedValueException('Expected boolean.');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supports($value = null)
+    {
+        if (null !== $value && $value != (bool) $value) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -58,6 +77,25 @@ class BooleanCharacteristic extends AbstractCharacteristic
     public function equals(CharacteristicInterface $characteristic)
     {
         return ($characteristic instanceof BooleanCharacteristic)
-            && ($characteristic->getBoolean() === $this->boolean);
+            && ($characteristic->getBoolean() === $this->getBoolean());
     }
-} 
+
+    /**
+     * {@inheritdoc}
+     */
+    public function display(Definition $definition)
+    {
+        if (!$this->isNull()) {
+            return $this->boolean ? 'Oui' : 'Non';
+        }
+        return parent::display($definition);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return 'boolean';
+    }
+}

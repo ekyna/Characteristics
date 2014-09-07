@@ -2,6 +2,7 @@
 
 namespace Ekyna\Component\Characteristics\Entity;
 
+use Ekyna\Component\Characteristics\Exception\UnexpectedValueException;
 use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
 
 /**
@@ -17,8 +18,9 @@ class HtmlCharacteristic extends AbstractCharacteristic
     private $html;
 
     /**
-     * @param string $html
+     * Sets the html.
      *
+     * @param string $html
      * @return HtmlCharacteristic
      */
     public function setHtml($html = null)
@@ -30,6 +32,8 @@ class HtmlCharacteristic extends AbstractCharacteristic
     }
 
     /**
+     * Returns the html.
+     *
      * @return string
      */
     public function getHtml()
@@ -42,7 +46,29 @@ class HtmlCharacteristic extends AbstractCharacteristic
      */
     public function getValue()
     {
-        return $this->html;
+        return $this->getHtml();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setValue($value = null)
+    {
+        if ($this->supports($value)) {
+            return $this->setHtml($value);
+        }
+        throw new UnexpectedValueException('Expected string.');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supports($value = null)
+    {
+        if (null !== $value && !is_string($value)) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -51,7 +77,7 @@ class HtmlCharacteristic extends AbstractCharacteristic
     public function equals(CharacteristicInterface $characteristic)
     {
         return ($characteristic instanceof HtmlCharacteristic)
-            && ($characteristic->getHtml() === $this->html);
+            && ($characteristic->getHtml() === $this->getHtml());
     }
 
     /**
@@ -60,5 +86,13 @@ class HtmlCharacteristic extends AbstractCharacteristic
     public function isNull()
     {
         return 0 === strlen($this->html);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return 'html';
     }
 }

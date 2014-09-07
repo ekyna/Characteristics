@@ -2,6 +2,7 @@
 
 namespace Ekyna\Component\Characteristics\Entity;
 
+use Ekyna\Component\Characteristics\Exception\UnexpectedValueException;
 use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
 
 /**
@@ -17,14 +18,21 @@ class NumberCharacteristic extends AbstractCharacteristic
     private $number;
 
     /**
+     * Sets the number.
+     *
      * @param float $number
+     * @return NumberCharacteristic
      */
     public function setNumber($number = null)
     {
         $this->number = null !== $number ? floatval($number) : null;
+
+        return $this;
     }
 
     /**
+     * Returns the number.
+     *
      * @return float
      */
     public function getNumber()
@@ -43,9 +51,39 @@ class NumberCharacteristic extends AbstractCharacteristic
     /**
      * {@inheritdoc}
      */
+    public function setValue($value = null)
+    {
+        if ($this->supports($value)) {
+            return $this->setNumber($value);
+        }
+        throw new UnexpectedValueException('Expected number.');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supports($value = null)
+    {
+        if (null !== $value && !is_numeric($value)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function equals(CharacteristicInterface $characteristic)
     {
         return ($characteristic instanceof NumberCharacteristic)
             && ($characteristic->getNumber() === $this->number);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return 'number';
     }
 }

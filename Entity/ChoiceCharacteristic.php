@@ -2,6 +2,7 @@
 
 namespace Ekyna\Component\Characteristics\Entity;
 
+use Ekyna\Component\Characteristics\Exception\UnexpectedValueException;
 use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
 
 /**
@@ -17,15 +18,22 @@ class ChoiceCharacteristic extends AbstractCharacteristic
     protected $choice;
 
     /**
-     * @param \Ekyna\Component\Characteristics\Entity\ChoiceCharacteristicValue $choice
+     * Sets the choice.
+     *
+     * @param ChoiceCharacteristicValue $choice
+     * @return ChoiceCharacteristic
      */
     public function setChoice(ChoiceCharacteristicValue $choice = null)
     {
         $this->choice = $choice;
+
+        return $this;
     }
 
     /**
-     * @return \Ekyna\Component\Characteristics\Entity\ChoiceCharacteristicValue
+     * Returns the choice.
+     *
+     * @return ChoiceCharacteristicValue
      */
     public function getChoice()
     {
@@ -37,7 +45,18 @@ class ChoiceCharacteristic extends AbstractCharacteristic
      */
     public function getValue()
     {
-        return ($this->choice instanceof ChoiceCharacteristicValue) ? $this->choice->getValue() : null;
+        return $this->getChoice();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setValue($value = null)
+    {
+        if ($this->supports($value)) {
+            return $this->setChoice($value);
+        }
+        throw new UnexpectedValueException('Expected Ekyna\Component\Characteristics\Entity\ChoiceCharacteristicValue.');
     }
 
     /**
@@ -46,6 +65,25 @@ class ChoiceCharacteristic extends AbstractCharacteristic
     public function equals(CharacteristicInterface $characteristic)
     {
         return ($characteristic instanceof ChoiceCharacteristic)
-            && ($characteristic->getChoice() === $this->choice);
+            && ($characteristic->getChoice() === $this->getChoice());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supports($value = null)
+    {
+        if (null !== $value && !$value instanceof ChoiceCharacteristicValue) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return 'choice';
     }
 }

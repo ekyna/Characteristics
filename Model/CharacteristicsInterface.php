@@ -5,8 +5,9 @@ namespace Ekyna\Component\Characteristics\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Interface CharacteristicsSubjectInterface
+ * Interface CharacteristicsInterface
  * @package Ekyna\Component\Characteristics\Model
+ * @author Étienne Dauvergne <contact@ekyna.com>
  */
 interface CharacteristicsInterface
 {

@@ -82,10 +82,11 @@ interface ManagerInterface
      * Creates an returns a characteristic from a definition.
      *
      * @param \Ekyna\Component\Characteristics\Schema\Definition $definition
+     * @param mixed $value
      *
      * @return \Ekyna\Component\Characteristics\Model\CharacteristicInterface
      *
      * @throws \InvalidArgumentException
      */
-    public function createCharacteristicFromDefinition(Definition $definition);
+    public function createCharacteristicFromDefinition(Definition $definition, $value = null);
 } 

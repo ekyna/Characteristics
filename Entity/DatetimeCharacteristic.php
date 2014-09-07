@@ -2,6 +2,7 @@
 
 namespace Ekyna\Component\Characteristics\Entity;
 
+use Ekyna\Component\Characteristics\Exception\UnexpectedValueException;
 use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
 use Ekyna\Component\Characteristics\Schema\Definition;
 
@@ -18,14 +19,21 @@ class DatetimeCharacteristic extends AbstractCharacteristic
     private $datetime;
 
     /**
+     * Sets the datetime.
+     *
      * @param \DateTime $datetime
+     * @return DatetimeCharacteristic
      */
     public function setDatetime(\DateTime $datetime = null)
     {
         $this->datetime = $datetime;
+
+        return $this;
     }
 
     /**
+     * Returns the datetime.
+     *
      * @return \DateTime
      */
     public function getDatetime()
@@ -38,7 +46,38 @@ class DatetimeCharacteristic extends AbstractCharacteristic
      */
     public function getValue()
     {
-        return $this->datetime;
+        return $this->getDatetime();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setValue($value = null)
+    {
+        if ($this->supports($value)) {
+            return $this->setDatetime($value);
+        }
+        throw new UnexpectedValueException('Expected \Datetime.');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supports($value = null)
+    {
+        if (null !== $value && !$value instanceof \DateTime) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function equals(CharacteristicInterface $characteristic)
+    {
+        return ($characteristic instanceof DatetimeCharacteristic)
+            && ($characteristic->getDatetime() === $this->getDatetime());
     }
 
     /**
@@ -55,9 +94,8 @@ class DatetimeCharacteristic extends AbstractCharacteristic
     /**
      * {@inheritdoc}
      */
-    public function equals(CharacteristicInterface $characteristic)
+    public function getType()
     {
-        return ($characteristic instanceof DatetimeCharacteristic)
-            && ($characteristic->getDatetime() === $this->datetime);
+        return 'datetime';
     }
 }

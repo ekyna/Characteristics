@@ -2,6 +2,7 @@
 
 namespace Ekyna\Component\Characteristics\Entity;
 
+use Ekyna\Component\Characteristics\Exception\UnexpectedValueException;
 use Ekyna\Component\Characteristics\Model\CharacteristicInterface;
 
 /**
@@ -17,8 +18,9 @@ class TextCharacteristic extends AbstractCharacteristic
     private $text;
 
     /**
-     * @param string $text
+     * Sets the text.
      *
+     * @param string $text
      * @return TextCharacteristic
      */
     public function setText($text = null)
@@ -30,6 +32,8 @@ class TextCharacteristic extends AbstractCharacteristic
     }
 
     /**
+     * Returns the text.
+     *
      * @return string
      */
     public function getText()
@@ -42,7 +46,29 @@ class TextCharacteristic extends AbstractCharacteristic
      */
     public function getValue()
     {
-        return $this->text;
+        return $this->getText();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setValue($value = null)
+    {
+        if ($this->supports($value)) {
+            return $this->setText($value);
+        }
+        throw new UnexpectedValueException('Expected string.');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supports($value = null)
+    {
+        if (null !== $value && !is_string($value)) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -51,7 +77,7 @@ class TextCharacteristic extends AbstractCharacteristic
     public function equals(CharacteristicInterface $characteristic)
     {
         return ($characteristic instanceof TextCharacteristic)
-            && ($characteristic->getText() === $this->text);
+            && ($characteristic->getText() === $this->getText());
     }
 
     /**
@@ -60,5 +86,13 @@ class TextCharacteristic extends AbstractCharacteristic
     public function isNull()
     {
         return 0 === strlen($this->text);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType()
+    {
+        return 'text';
     }
 }

@@ -42,6 +42,8 @@ abstract class AbstractCharacteristic implements CharacteristicInterface
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -71,19 +73,17 @@ abstract class AbstractCharacteristic implements CharacteristicInterface
     /**
      * {@inheritDoc}
      */
-    public function display(Definition $definition)
-    {
-        if ($this->isNull()) {
-            return 'NC';
-        }
-
-        return sprintf($definition->getParameter('format'), (string) $this->getValue());
-    }
+    abstract public function getValue();
 
     /**
      * {@inheritDoc}
      */
-    abstract public function getValue();
+    abstract public function setValue($value = null);
+
+    /**
+     * {@inheritDoc}
+     */
+    abstract public function supports($value = null);
 
     /**
      * {@inheritDoc}
@@ -99,9 +99,19 @@ abstract class AbstractCharacteristic implements CharacteristicInterface
     }
 
     /**
-     * Returns the type string representation.
-     *
-     * @return mixed
+     * {@inheritDoc}
      */
-    //abstract public function getType();
+    public function display(Definition $definition)
+    {
+        if ($this->isNull()) {
+            return 'NC';
+        }
+
+        return sprintf($definition->getParameter('format'), (string)$this->getValue());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    abstract public function getType();
 }

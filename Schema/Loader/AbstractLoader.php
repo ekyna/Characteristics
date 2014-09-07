@@ -8,6 +8,7 @@ use Ekyna\Component\Characteristics\Schema\Group;
 use Ekyna\Component\Characteristics\Schema\Schema;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
+use Symfony\Component\Intl\Locale\Locale;
 
 /**
  * Class AbstractLoader
@@ -79,7 +80,7 @@ abstract class AbstractLoader implements LoaderInterface
         }
         if ($type === 'datetime') {
             if ($parameters['format'] === '%s') {
-                $parameters['format'] = '%d/%m/%Y';
+                $parameters['format'] = 'd/m/Y';
             }
         } elseif (false === strpos($parameters['format'], '%s')) {
             throw new \InvalidArgumentException(sprintf('"format" parameter must contain "%%s" for characteristic "%s".', $name));
