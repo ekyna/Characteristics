@@ -50,12 +50,8 @@ interface SchemaRegistryInterface
      * Returns a characteristic definition by his identifier.
      *
      * @param $identifier
-     *
-     * @return Definition
-     *
      * @throws \RuntimeException
+     * @return Definition
      */
     public function getDefinitionByIdentifier($identifier);
-
-
 }

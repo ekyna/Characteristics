@@ -146,4 +146,21 @@ class Schema
     {
         return $this->groups;
     }
+    /**
+     * Returns a characteristic definition by his identifier.
+     *
+     * @param $identifier
+     * @return Definition|null
+     */
+    public function getDefinitionByIdentifier($identifier)
+    {
+        foreach($this->groups as $group) {
+            foreach($group->getDefinitions() as $definition) {
+                if ($definition->getIdentifier() === $identifier) {
+                    return $definition;
+                }
+            }
+        }
+        return null;
+    }
 }

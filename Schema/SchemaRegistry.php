@@ -103,12 +103,8 @@ class SchemaRegistry implements SchemaRegistryInterface
         $this->load();
 
         foreach($this->schemas as $schema) {
-            foreach($schema->getGroups() as $group) {
-                foreach($group->getDefinitions() as $definition) {
-                    if ($definition->getIdentifier() === $identifier) {
-                        return $definition;
-                    }
-                }
+            if (null !== $definition = $schema->getDefinitionByIdentifier($identifier)) {
+                return $definition;
             }
         }
 
