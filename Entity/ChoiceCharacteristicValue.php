@@ -35,6 +35,16 @@ class ChoiceCharacteristicValue
     }
 
     /**
+     * Returns the string representation.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
+
+    /**
      * @param string $value
      *
      * @return ChoiceCharacteristicValue
