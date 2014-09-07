@@ -4,6 +4,7 @@ namespace Ekyna\Component\Characteristics;
 
 use Ekyna\Component\Characteristics\Entity\BooleanCharacteristic;
 use Ekyna\Component\Characteristics\Entity\ChoiceCharacteristic;
+use Ekyna\Component\Characteristics\Entity\ChoiceCharacteristicValue;
 use Ekyna\Component\Characteristics\Entity\DatetimeCharacteristic;
 use Ekyna\Component\Characteristics\Entity\HtmlCharacteristic;
 use Ekyna\Component\Characteristics\Entity\NumberCharacteristic;
@@ -211,6 +212,11 @@ class Manager implements ManagerInterface
                 break;
             case 'choice' :
                 $characteristic = new ChoiceCharacteristic();
+                if (null !== $value && !$value instanceof ChoiceCharacteristicValue) {
+                    $tmp = $value;
+                    $value = new ChoiceCharacteristicValue();
+                    $value->setName($definition->getIdentifier())->setValue($tmp);
+                }
                 break;
             default :
                 throw new \InvalidArgumentException(sprintf('Invalid type "%s".', $definition->getType()));
