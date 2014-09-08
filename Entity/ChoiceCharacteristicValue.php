@@ -41,7 +41,7 @@ class ChoiceCharacteristicValue
      */
     public function __toString()
     {
-        return (string)$this->getValue();
+        return $this->getValue();
     }
 
     /**
@@ -51,7 +51,7 @@ class ChoiceCharacteristicValue
      */
     public function setValue($value)
     {
-        $this->value = $value;
+        $this->value = (string)$value;
 
         return $this;
     }
