@@ -22,7 +22,7 @@
             <gedmo:timestampable on="update" />
         </field>
 
-        <one-to-many field="characteristics" target-entity="Ekyna\Component\Characteristics\Entity\AbstractCharacteristic" mapped-by="characteristics" index-by="name">
+        <one-to-many field="characteristics" target-entity="Ekyna\Component\Characteristics\Entity\AbstractCharacteristic" mapped-by="characteristics" index-by="identifier">
             <cascade>
                 <cascade-all/>
             </cascade>

@@ -12,19 +12,19 @@ use Ekyna\Component\Characteristics\Schema\Definition;
 interface CharacteristicInterface
 {
     /**
-     * Sets the name.
+     * Sets the identifier.
      *
-     * @param string $name
+     * @param string $identifier
      * @return \Ekyna\Component\Characteristics\Model\CharacteristicsInterface
      */
-    public function setName($name);
+    public function setIdentifier($identifier);
 
     /**
-     * Returns the name.
+     * Returns the identifier.
      *
      * @return string
      */
-    public function getName();
+    public function getIdentifier();
 
     /**
      * Sets the characteristics.

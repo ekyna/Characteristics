@@ -15,8 +15,8 @@ class ChoiceCharacteristicValueRepository extends EntityRepository
     public function findByDefinition(Definition $definition)
     {
         $query = $this->createQueryBuilder('c')
-            ->where('c.name = :name')
-            ->setParameter('name', $definition->getIdentifier())
+            ->where('c.identifier = :identifier')
+            ->setParameter('identifier', $definition->getIdentifier())
             ->orderBy('c.value', 'ASC')
             ->getQuery();
 

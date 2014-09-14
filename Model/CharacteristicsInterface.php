@@ -50,18 +50,18 @@ interface CharacteristicsInterface
     /**
      * Returns the characteristics.
      *
-     * @return ArrayCollection
+     * @return CharacteristicInterface[]
      */
     public function getCharacteristics();
 
     /**
-     * Returns a characteristic by his name.
+     * Finds a characteristic by identifier.
      *
-     * @param string $name
+     * @param string $identifier
      *
-     * @return CharacteristicInterface|NULL
+     * @return CharacteristicInterface|null
      */
-    public function getCharacteristicByName($name);
+    public function findCharacteristicByIdentifier($identifier);
 
     /**
      * Returns the date of the last update.

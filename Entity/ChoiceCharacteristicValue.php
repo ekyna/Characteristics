@@ -24,7 +24,7 @@ class ChoiceCharacteristicValue
     /**
      * @var string
      */
-    protected $name;
+    protected $identifier;
 
     /**
      * @return integer
@@ -65,22 +65,24 @@ class ChoiceCharacteristicValue
     }
 
     /**
-     * @param string $name
+     * Sets the identifier.
      *
+     * @param string $identifier
      * @return ChoiceCharacteristicValue
      */
-    public function setName($name)
+    public function setIdentifier($identifier)
     {
-        $this->name = $name;
-
+        $this->identifier = $identifier;
         return $this;
     }
 
     /**
+     * Returns the identifier.
+     *
      * @return string
      */
-    public function getName()
+    public function getIdentifier()
     {
-        return $this->name;
+        return $this->identifier;
     }
 }

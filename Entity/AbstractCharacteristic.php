@@ -21,7 +21,7 @@ abstract class AbstractCharacteristic implements CharacteristicInterface
     /**
      * @var string
      */
-    protected $name;
+    protected $identifier;
 
     /**
      * @var \Ekyna\Component\Characteristics\Model\CharacteristicsInterface
@@ -37,21 +37,25 @@ abstract class AbstractCharacteristic implements CharacteristicInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Sets the identifier.
+     *
+     * @param string $identifier
+     * @return AbstractCharacteristic
      */
-    public function setName($name)
+    public function setIdentifier($identifier)
     {
-        $this->name = $name;
-
+        $this->identifier = $identifier;
         return $this;
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the identifier.
+     *
+     * @return string
      */
-    public function getName()
+    public function getIdentifier()
     {
-        return $this->name;
+        return $this->identifier;
     }
 
     /**

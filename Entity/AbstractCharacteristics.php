@@ -19,7 +19,7 @@ abstract class AbstractCharacteristics implements CharacteristicsInterface
     protected $id;
 
     /**
-     * @var ArrayCollection
+     * @var AbstractCharacteristic[]
      */
     protected $characteristics;
 
@@ -99,10 +99,10 @@ abstract class AbstractCharacteristics implements CharacteristicsInterface
     /**
      * {@inheritDoc}
      */
-    public function getCharacteristicByName($name)
+    public function findCharacteristicByIdentifier($identifier)
     {
         foreach ($this->characteristics as $characteristic) {
-            if ($characteristic->getName() === $name) {
+            if ($characteristic->getIdentifier() === $identifier) {
                 return $characteristic;
             }
         }

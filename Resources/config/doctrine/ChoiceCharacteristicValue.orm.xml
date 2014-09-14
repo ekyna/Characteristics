@@ -11,27 +11,19 @@
             repository-class="Ekyna\Component\Characteristics\Entity\ChoiceCharacteristicValueRepository">
 
         <indexes>
-            <index name="name_idx" columns="name"/>
+            <index name="identifier_idx" columns="identifier"/>
         </indexes>
 
         <unique-constraints>
-            <unique-constraint columns="name,value" name="unique_idx" />
+            <unique-constraint columns="identifier,value" name="unique_idx" />
         </unique-constraints>
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
 
-        <!--
-        <one-to-many field="choices" target-entity="Ekyna\Component\Characteristics\Entity\ChoiceCharacteristic" mapped-by="choice">
-            <cascade>
-                <cascade-all/>
-            </cascade>
-        </one-to-many>
-        -->
-
         <field name="value" column="value" type="string" length="255" />
-        <field name="name" column="name" type="string" length="255" />
+        <field name="identifier" column="identifier" type="string" length="255" />
 
     </entity>
 

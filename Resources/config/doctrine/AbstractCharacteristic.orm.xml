@@ -11,7 +11,7 @@
             inheritance-type="SINGLE_TABLE">
 
         <unique-constraints>
-            <unique-constraint columns="name,characteristics_id" name="unique_idx" />
+            <unique-constraint columns="identifier,characteristics_id" name="unique_idx" />
         </unique-constraints>
 
         <discriminator-column name="type" type="string" />
@@ -29,7 +29,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="name" column="name" type="string" length="255" />
+        <field name="identifier" column="identifier" type="string" length="255" />
 
         <many-to-one field="characteristics" target-entity="Ekyna\Component\Characteristics\Entity\AbstractCharacteristics" inversed-by="characteristics" orphan-removal="true">
             <join-column name="characteristics_id" referenced-column-name="id" on-delete="CASCADE" nullable="false" />

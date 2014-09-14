@@ -133,17 +133,18 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
                 if (true === $schemaDefinition->getVirtual()) {
                     continue;
                 }
-                $name = $schemaDefinition->getIdentifier();
-                if ($data->offsetExists($name)) {
-                    $characteristic = $data->offsetGet($name);
+                $identifier = $schemaDefinition->getIdentifier();
+                if ($data->offsetExists($identifier)) {
+                    /** @var CharacteristicInterface $characteristic */
+                    $characteristic = $data->offsetGet($identifier);
                     if ($this->isNullOrEqualsParentData($characteristic)) {
-                        $data->offsetUnset($name);
+                        $data->offsetUnset($identifier);
                         $this->em->remove($characteristic);
                     } else {
-                        $characteristic->setName($name);
+                        $characteristic->setIdentifier($identifier);
                     }
                 } else {
-                    throw new \RuntimeException(sprintf('Missing [%s] characteristic data.', $name));
+                    throw new \RuntimeException(sprintf('Missing [%s] characteristic data.', $identifier));
                 }
             }
         }
@@ -162,7 +163,7 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
         if ($characteristic->isNull()) {
             return true;
         } elseif (null !== $this->parentDatas &&
-            null !== $parentCharacteristic = $this->parentDatas->getCharacteristicByName($characteristic->getName())) {
+            null !== $parentCharacteristic = $this->parentDatas->findCharacteristicByIdentifier($characteristic->getIdentifier())) {
             return $parentCharacteristic->equals($characteristic);
         }
 
@@ -177,24 +178,24 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
      */
     private function appendProperForm(FormInterface $form, Definition $definition)
     {
-        $name = $definition->getIdentifier();
-        if ($form->has($name)) {
+        $identifier = $definition->getIdentifier();
+        if ($form->has($identifier)) {
             return;
         }
 
         $type = sprintf('ekyna_%s_characteristic', $definition->getType());
         $options = array();
         if ($definition->getType() == 'choice') {
-            $options['identifier'] = $name;
+            $options['identifier'] = $identifier;
         }
 
         $parentData = null;
-        if (null !== $this->parentDatas && null !== $characteristic = $this->parentDatas->getCharacteristicByName($name)) {
+        if (null !== $this->parentDatas && null !== $characteristic = $this->parentDatas->findCharacteristicByIdentifier($identifier)) {
             $parentData = $characteristic->display($definition);
         }
 
-        $form->add($name, $type, array_merge(array(
-            'property_path' => '[' . $name . ']',
+        $form->add($identifier, $type, array_merge(array(
+            'property_path' => '[' . $identifier . ']',
             'label' => $definition->getTitle(),
             'parent_data' => $parentData,
         ), $options));
@@ -209,11 +210,11 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
      */
     private function appendProperData(Collection $data, Definition $definition)
     {
-        $name = $definition->getIdentifier();
-        if ($data->offsetExists($name)) {
+        $identifier = $definition->getIdentifier();
+        if ($data->offsetExists($identifier)) {
             return;
         }
         $characteristic = $this->manager->createCharacteristicFromDefinition($definition);
-        $data->set($name, $characteristic);
+        $data->set($identifier, $characteristic);
     }
 }

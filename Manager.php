@@ -157,9 +157,9 @@ class Manager implements ManagerInterface
                         $value = (string) $characteristic->display($definition);
                     }
                 } else {
-                    $characteristic = $characteristics->getCharacteristicByName($definition->getIdentifier());
+                    $characteristic = $characteristics->findCharacteristicByIdentifier($definition->getIdentifier());
                     if (null === $characteristic && null !== $parentCharacteristics) {
-                        if (null !== $characteristic = $parentCharacteristics->getCharacteristicByName($definition->getIdentifier())) {
+                        if (null !== $characteristic = $parentCharacteristics->findCharacteristicByIdentifier($definition->getIdentifier())) {
                             $inherited = true;
                         }
                     }
@@ -215,7 +215,7 @@ class Manager implements ManagerInterface
                 if (null !== $value && !$value instanceof ChoiceCharacteristicValue) {
                     $tmp = $value;
                     $value = new ChoiceCharacteristicValue();
-                    $value->setName($definition->getIdentifier())->setValue($tmp);
+                    $value->setIdentifier($definition->getIdentifier())->setValue($tmp);
                 }
                 break;
             default :
@@ -223,7 +223,7 @@ class Manager implements ManagerInterface
         }
 
         $characteristic
-            ->setName($definition->getIdentifier())
+            ->setIdentifier($definition->getIdentifier())
             ->setValue($value)
         ;
 
