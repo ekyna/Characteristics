@@ -43,18 +43,21 @@ abstract class AbstractLoader implements LoaderInterface
                 $group = new Group($groupName, $groupConfig['title']);
                 foreach ($groupConfig['characteristics'] as $characteristicName => $characteristicConfig) {
                     $fullName = implode(':', array($schemaName, $groupName, $characteristicName));
-                    $type = $characteristicConfig['type'];
-                    $parameters = $characteristicConfig['parameters'];
 
-                    $this->validateParameters($fullName, $type, $parameters);
+                    $this->validateDefinitionConfig($fullName, $characteristicConfig);
 
-                    $definition = new Definition(
-                        $characteristicName,
-                        $fullName,
-                        $characteristicConfig['title'],
-                        $type,
-                        $parameters
-                    );
+                    $definition = new Definition();
+                    $definition
+                        ->setName($characteristicName)
+                        ->setFullName($fullName)
+                        ->setType($characteristicConfig['type'])
+                        ->setTitle($characteristicConfig['title'])
+                        ->setShared($characteristicConfig['shared'])
+                        ->setVirtual($characteristicConfig['virtual'])
+                        ->setPropertyPaths($characteristicConfig['property_paths'])
+                        ->setFormat($characteristicConfig['format'])
+                        ->setDisplayGroups($characteristicConfig['display_groups'])
+                    ;
                     $group->addDefinition($definition);
                 }
                 $schema->addGroup($group);
@@ -66,24 +69,23 @@ abstract class AbstractLoader implements LoaderInterface
     }
 
     /**
-     * Validates the parameters.
+     * Validates the definition configuration.
      *
      * @param string $name
-     * @param string $type
-     * @param array $parameters
+     * @param array $config
      * @throws \InvalidArgumentException
      */
-    private function validateParameters($name, $type, array &$parameters)
+    private function validateDefinitionConfig($name, array &$config)
     {
-        if (true === $parameters['virtual'] && 0 === count($parameters['property_paths'])) {
-            throw new \InvalidArgumentException(sprintf('"property_paths" parameter must be set for "virtual" characteristic "%s".', $name));
+        if (true === $config['virtual'] && 0 === count($config['property_paths'])) {
+            throw new \InvalidArgumentException(sprintf('"property_paths" must be set for "virtual" characteristic "%s".', $name));
         }
-        if ($type === 'datetime') {
-            if ($parameters['format'] === '%s') {
-                $parameters['format'] = 'd/m/Y';
+        if ($config['type'] === 'datetime') {
+            if ($config['format'] === '%s') {
+                $config['format'] = 'd/m/Y';
             }
-        } elseif (false === strpos($parameters['format'], '%s')) {
-            throw new \InvalidArgumentException(sprintf('"format" parameter must contain "%%s" for characteristic "%s".', $name));
+        } elseif (false === strpos($config['format'], '%s')) {
+            throw new \InvalidArgumentException(sprintf('"format" must contain "%%s" for characteristic "%s".', $name));
         }
     }
 

@@ -14,14 +14,12 @@ schemas:
                     size:
                         title: Taille de l'écran
                         type: number
-                        parameters:
-                            format: "%s pouces"
+                        format: "%s pouces"
                     brand:
                         title: Marque
                         type: text
-                        parameters:
-                            virtual: true
-                            property_paths: ['product.brand.title']
+                        virtual: true
+                        property_paths: ['product.brand.title']
                     release_date:
                         title: Date de sortie
                         type: datetime

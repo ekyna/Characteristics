@@ -129,9 +129,9 @@ class Manager implements ManagerInterface
             foreach ($schemaGroup->getDefinitions() as $definition) {
                 $value = null;
                 $inherited = false;
-                if (true === $definition->getParameter('virtual')) {
+                if (true === $definition->getVirtual()) {
                     $accessor = PropertyAccess::createPropertyAccessor();
-                    $propertyPaths = $definition->getParameter('property_paths');
+                    $propertyPaths = $definition->getPropertyPaths();
                     foreach($propertyPaths as $propertyPath) {
                         try {
                             if (null !== $value = $accessor->getValue($characteristics, $propertyPath)) {

@@ -107,7 +107,7 @@ abstract class AbstractCharacteristic implements CharacteristicInterface
             return 'NC';
         }
 
-        return sprintf($definition->getParameter('format'), (string)$this->getValue());
+        return sprintf($definition->getFormat(), (string)$this->getValue());
     }
 
     /**

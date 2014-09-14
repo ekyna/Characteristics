@@ -86,7 +86,7 @@ class DatetimeCharacteristic extends AbstractCharacteristic
     public function display(Definition $definition)
     {
         if (!$this->isNull()) {
-            return $this->datetime->format($definition->getParameter('format'));
+            return $this->datetime->format($definition->getFormat());
         }
         return parent::display($definition);
     }

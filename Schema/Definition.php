@@ -29,27 +29,30 @@ class Definition
     private $type;
 
     /**
-     * @var array
+     * @var boolean
      */
-    private $parameters;
+    private $shared;
 
     /**
-     * Constructor.
-     *
-     * @param string $name
-     * @param string $fullName
-     * @param string $title
-     * @param string $type
-     * @param array $parameters
+     * @var boolean
      */
-    public function __construct($name, $fullName, $title, $type, array $parameters = array())
-    {
-        $this->name = $name;
-        $this->fullName = $fullName;
-        $this->title = $title;
-        $this->type = $type;
-        $this->parameters = $parameters;
-    }
+    private $virtual;
+
+    /**
+     * @var array
+     */
+    private $propertyPaths;
+
+    /**
+     * @var string
+     */
+    private $format;
+
+    /**
+     * @var array
+     */
+    private $displayGroups;
+
 
     /**
      * Returns the identifier.
@@ -58,7 +61,7 @@ class Definition
      */
     public function getIdentifier()
     {
-        return true === $this->parameters['shared'] ? $this->name : $this->fullName;
+        return true === $this->getShared() ? $this->name : $this->fullName;
     }
 
     /**
@@ -158,40 +161,112 @@ class Definition
     }
 
     /**
-     * Sets the parameters.
+     * Sets the shared.
      *
-     * @param array $parameters
+     * @param boolean $shared
+     * @return Definition
      */
-    public function setParameters($parameters)
+    public function setShared($shared)
     {
-        $this->parameters = $parameters;
+        $this->shared = $shared;
+        return $this;
     }
 
     /**
-     * Returns the parameters.
+     * Returns the shared.
+     *
+     * @return boolean
+     */
+    public function getShared()
+    {
+        return $this->shared;
+    }
+
+    /**
+     * Sets the virtual.
+     *
+     * @param boolean $virtual
+     * @return Definition
+     */
+    public function setVirtual($virtual)
+    {
+        $this->virtual = $virtual;
+        return $this;
+    }
+
+    /**
+     * Returns the virtual.
+     *
+     * @return boolean
+     */
+    public function getVirtual()
+    {
+        return $this->virtual;
+    }
+
+    /**
+     * Sets the propertyPaths.
+     *
+     * @param array $propertyPaths
+     * @return Definition
+     */
+    public function setPropertyPaths($propertyPaths)
+    {
+        $this->propertyPaths = $propertyPaths;
+        return $this;
+    }
+
+    /**
+     * Returns the propertyPaths.
      *
      * @return array
      */
-    public function getParameters()
+    public function getPropertyPaths()
     {
-        return $this->parameters;
+        return $this->propertyPaths;
     }
 
     /**
-     * Returns the [key] parameter value.
+     * Sets the format.
      *
-     * @param string $key
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return mixed
+     * @param string $format
+     * @return Definition
      */
-    public function getParameter($key)
+    public function setFormat($format)
     {
-        if (!array_key_exists($key, $this->parameters)) {
-            throw new \InvalidArgumentException(sprintf('Parameter "%s" does not exists.', $key));
-        }
+        $this->format = $format;
+        return $this;
+    }
 
-        return $this->parameters[$key];
+    /**
+     * Returns the format.
+     *
+     * @return string
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * Sets the displayGroups.
+     *
+     * @param array $displayGroups
+     * @return Definition
+     */
+    public function setDisplayGroups(array $displayGroups = array('default'))
+    {
+        $this->displayGroups = $displayGroups;
+        return $this;
+    }
+
+    /**
+     * Returns the displayGroups.
+     *
+     * @return array
+     */
+    public function getDisplayGroups()
+    {
+        return $this->displayGroups;
     }
 }

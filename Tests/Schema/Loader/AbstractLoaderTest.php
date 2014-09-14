@@ -8,6 +8,9 @@ namespace Ekyna\Component\Characteristics\Tests\Schema\Loader;
  */
 abstract class AbstractLoaderTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @return \Ekyna\Component\Characteristics\Schema\Schema[]
+     */
     abstract public function loadSchemas();
 
     public function testLoad()
@@ -41,19 +44,22 @@ abstract class AbstractLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('product:general:size', $sizeDefinition->getFullName());
         $this->assertEquals('Taille de l\'écran', $sizeDefinition->getTitle());
         $this->assertEquals('number', $sizeDefinition->getType());
+        $this->assertEquals('%s pouces', $sizeDefinition->getFormat());
 
         $brandDefinition = $generalGroup->getDefinitionByName('brand');
         $this->assertEquals('brand', $brandDefinition->getName());
         $this->assertEquals('product:general:brand', $brandDefinition->getFullName());
         $this->assertEquals('Marque', $brandDefinition->getTitle());
         $this->assertEquals('text', $brandDefinition->getType());
-        $this->assertEquals(array('product.brand.title'), $brandDefinition->getParameter('property_paths'));
+        $this->assertTrue($brandDefinition->getVirtual());
+        $this->assertEquals(array('product.brand.title'), $brandDefinition->getPropertyPaths());
 
         $releaseDateDefinition = $generalGroup->getDefinitionByName('release_date');
         $this->assertEquals('release_date', $releaseDateDefinition->getName());
         $this->assertEquals('product:general:release_date', $releaseDateDefinition->getFullName());
         $this->assertEquals('Date de sortie', $releaseDateDefinition->getTitle());
         $this->assertEquals('datetime', $releaseDateDefinition->getType());
+        $this->assertEquals('d/m/Y', $sizeDefinition->getFormat());
 
         $networkGroup = $productSchema->getGroupByName('network');
         $this->assertEquals('network', $networkGroup->getName());
