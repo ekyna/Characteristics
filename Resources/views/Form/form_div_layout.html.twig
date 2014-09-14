@@ -20,6 +20,7 @@
         <td>
             {% if child.vars.parent_data is not sameas(null) %}<p><em>{{ child.vars.parent_data|raw }}</em></p>{% endif %}
             {{ form_widget(child) }}
+            {{ form_errors(child) }}
         </td>
     {% endfor %}
     </tr>
@@ -37,9 +38,11 @@
 
 {% block form_row %}
     {% spaceless %}
-        {{ block('form_input_group') }}
-        {{ block('form_help') }}
-        {{ form_errors(form) }}
+        <div{% if form.vars.errors|length > 0 %} class="has-error"{% endif %}>
+            {{ block('form_input_group') }}
+            {{ block('form_help') }}
+            {{ form_errors(form) }}
+        </div>
     {% endspaceless %}
 {% endblock form_row %}
 
