@@ -8,6 +8,9 @@
     <entity name="Ekyna\Component\Characteristics\Entity\ChoiceCharacteristic">
 
         <many-to-one field="choice" target-entity="Ekyna\Component\Characteristics\Entity\ChoiceCharacteristicValue">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
             <join-column name="choice_id" referenced-column-name="id" nullable="true" on-delete="RESTRICT" />
         </many-to-one>
 
