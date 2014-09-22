@@ -9,7 +9,7 @@
     <entity
             name="Ekyna\Component\Characteristics\Entity\AbstractCharacteristics"
             table="characteristics"
-            inheritance-type="JOINED">
+            inheritance-type="SINGLE_TABLE">
 
         <discriminator-column name="type" type="string" />
         <discriminator-map />
