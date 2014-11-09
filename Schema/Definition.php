@@ -269,4 +269,15 @@ class Definition
     {
         return $this->displayGroups;
     }
+
+    /**
+     * Returns whether the definition has the display group or not.
+     *
+     * @param $displayGroup
+     * @return bool
+     */
+    public function hasDisplayGroup($displayGroup)
+    {
+        return in_array($displayGroup, $this->displayGroups);
+    }
 }

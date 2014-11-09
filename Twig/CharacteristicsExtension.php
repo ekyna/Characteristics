@@ -72,9 +72,11 @@ class CharacteristicsExtension extends \Twig_Extension
         $options = array_merge(array(
             'table_class' => 'table table-striped table-bordered table-condensed ekyna-characteristics',
             'highlight_inherited' => false,
+            'display_group' => 'default',
         ), $options);
+
         return $this->template->render(array(
-            'view' => $this->manager->createView($characteristics),
+            'view' => $this->manager->createView($characteristics, $options['display_group']),
             'options' => $options,
         ));
     }

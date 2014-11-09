@@ -117,8 +117,12 @@ class Manager implements ManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function createView(CharacteristicsInterface $characteristics)
+    public function createView(CharacteristicsInterface $characteristics, $displayGroup = 'default')
     {
+        if (empty($displayGroup)) {
+            $displayGroup = 'default';
+        }
+
         $schema = $this->getSchemaForClass(get_class($characteristics));
         $parentCharacteristics = $this->getInheritedCharacteristics($characteristics);
 
@@ -127,6 +131,9 @@ class Manager implements ManagerInterface
         foreach ($schema->getGroups() as $schemaGroup) {
             $group = new Group($schemaGroup->getName(), $schemaGroup->getTitle());
             foreach ($schemaGroup->getDefinitions() as $definition) {
+                if (!$definition->hasDisplayGroup($displayGroup)) {
+                    continue;
+                }
                 $value = null;
                 $inherited = false;
                 if (true === $definition->getVirtual()) {
@@ -170,7 +177,9 @@ class Manager implements ManagerInterface
                 $entry = new Entry($definition, $value, $inherited);
                 $group->entries[] = $entry;
             }
-            $view->groups[] = $group;
+            if (!empty($group->entries)) {
+                $view->groups[] = $group;
+            }
         }
 
         return $view;
