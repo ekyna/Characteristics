@@ -59,7 +59,7 @@ abstract class AbstractLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('product:general:release_date', $releaseDateDefinition->getFullName());
         $this->assertEquals('Date de sortie', $releaseDateDefinition->getTitle());
         $this->assertEquals('datetime', $releaseDateDefinition->getType());
-        $this->assertEquals('d/m/Y', $sizeDefinition->getFormat());
+        $this->assertEquals('d/m/Y', $releaseDateDefinition->getFormat());
 
         $networkGroup = $productSchema->getGroupByName('network');
         $this->assertEquals('network', $networkGroup->getName());

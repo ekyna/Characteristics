@@ -20,7 +20,6 @@
             "Ekyna\\Component\\Characteristics": ""
         }
     },
-    "minimum-stability": "dev",
     "target-dir": "Ekyna/Component/Characteristics",
     "extra": {
         "branch-alias": {
