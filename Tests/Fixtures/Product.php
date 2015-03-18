@@ -4,6 +4,7 @@ namespace Ekyna\Component\Characteristics\Tests\Fixtures;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Ekyna\Component\Characteristics\Annotation as Characteristics;
 
 /**
  * Class Product
@@ -14,7 +15,7 @@ class Product
     /**
      * @var \Ekyna\Component\Characteristics\Tests\Fixtures\ProductCharacteristics
      * @ORM\OneToOne(targetEntity="Ekyna\Component\Characteristics\Tests\Fixtures\ProductCharacteristics")
-     * @Schema("product")
+     * @Characteristics\Schema("product")
      */
     protected $characteristics;
 
