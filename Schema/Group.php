@@ -31,7 +31,7 @@ class Group
      */
     public function __construct($name, $title)
     {
-        $this->definitions = array();
+        $this->definitions = [];
         $this->name = $name;
         $this->title = $title;
     }

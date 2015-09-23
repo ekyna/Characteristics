@@ -10,11 +10,11 @@ class ClassMetadata extends MergeableClassMetadata
 
     public function serialize()
     {
-        return serialize(array(
+        return serialize([
             $this->schema,
             $this->inherit,
             parent::serialize(),
-        ));
+        ]);
     }
 
     public function unserialize($str)

@@ -17,8 +17,8 @@ use Metadata\MetadataFactory;
  */
 class ManagerBuilder
 {
-    private $metadataDirs = array();
-    private $schemaDirs = array();
+    private $metadataDirs = [];
+    private $schemaDirs = [];
     private $debug = false;
     private $cacheDir;
     private $annotationReader;

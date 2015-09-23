@@ -44,7 +44,7 @@ class CharacteristicsSchemaListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(FormEvents::PRE_SET_DATA => 'preSetData');
+        return [FormEvents::PRE_SET_DATA => 'preSetData'];
     }
 
     /**
@@ -61,9 +61,9 @@ class CharacteristicsSchemaListener implements EventSubscriberInterface
         $parentCharacteristics = $this->manager->getInheritedCharacteristics($characteristics);
 
         $form = $event->getForm();
-        $form->add('characteristics', new CharacteristicsCollectionType($this->manager, $this->em, $schema, $parentCharacteristics), array(
+        $form->add('characteristics', new CharacteristicsCollectionType($this->manager, $this->em, $schema, $parentCharacteristics), [
             'label' => false,
             'by_reference' => false,
-        ));
+        ]);
     }
 }

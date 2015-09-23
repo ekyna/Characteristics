@@ -52,7 +52,7 @@ abstract class AbstractLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Marque', $brandDefinition->getTitle());
         $this->assertEquals('text', $brandDefinition->getType());
         $this->assertTrue($brandDefinition->getVirtual());
-        $this->assertEquals(array('product.brand.title'), $brandDefinition->getPropertyPaths());
+        $this->assertEquals(['product.brand.title'], $brandDefinition->getPropertyPaths());
 
         $releaseDateDefinition = $generalGroup->getDefinitionByName('release_date');
         $this->assertEquals('release_date', $releaseDateDefinition->getName());

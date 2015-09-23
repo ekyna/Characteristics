@@ -35,8 +35,8 @@ class Schema
     {
         $this->name = $name;
         $this->title = $title;
-        $this->groups = array();
-        $this->index = array();
+        $this->groups = [];
+        $this->index = [];
     }
 
     /**

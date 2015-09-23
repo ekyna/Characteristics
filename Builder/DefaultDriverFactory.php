@@ -18,11 +18,11 @@ class DefaultDriverFactory implements DriverFactoryInterface
         if ( ! empty($metadataDirs)) {
             $fileLocator = new FileLocator($metadataDirs);
 
-            return new DriverChain(array(
+            return new DriverChain([
                 /*new YamlDriver($fileLocator),
                 new XmlDriver($fileLocator),*/
                 new AnnotationDriver($annotationReader),
-            ));
+            ]);
         }
 
         return new AnnotationDriver($annotationReader);

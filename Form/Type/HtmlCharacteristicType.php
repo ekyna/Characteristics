@@ -3,7 +3,7 @@
 namespace Ekyna\Component\Characteristics\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class HtmlCharacteristicType
@@ -17,26 +17,26 @@ class HtmlCharacteristicType extends AbstractCharacteristicType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('html', 'textarea', array(
+        $builder->add('html', 'textarea', [
             'label' => false,
             'required' => false,
-            'attr' => array(
+            'attr' => [
                 'class' => 'tinymce',
                 'data-theme' => 'simple',
-            )
-        ));
+            ]
+        ]);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Ekyna\Component\Characteristics\Entity\HtmlCharacteristic'
-        ));
+        ]);
     }
 
     /**

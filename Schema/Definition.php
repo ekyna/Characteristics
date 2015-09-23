@@ -254,7 +254,7 @@ class Definition
      * @param array $displayGroups
      * @return Definition
      */
-    public function setDisplayGroups(array $displayGroups = array('default'))
+    public function setDisplayGroups(array $displayGroups = ['default'])
     {
         $this->displayGroups = $displayGroups;
         return $this;

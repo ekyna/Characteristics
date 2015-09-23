@@ -9,7 +9,7 @@ use Ekyna\Component\Characteristics\Model\CharacteristicsInterface;
 use Ekyna\Component\Characteristics\Schema\Schema;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class CharacteristicsCollectionType

@@ -64,10 +64,10 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             FormEvents::PRE_SET_DATA => 'preSetData',
-            FormEvents::SUBMIT => array('onSubmit', 50),
-        );
+            FormEvents::SUBMIT => ['onSubmit', 50],
+        ];
     }
 
     /**
@@ -95,7 +95,7 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
         }
 
         foreach ($this->schema->getGroups() as $schemaGroup) {
-            $form->add($schemaGroup->getName(), new GroupType(), array('label' => $schemaGroup->getTitle()));
+            $form->add($schemaGroup->getName(), new GroupType(), ['label' => $schemaGroup->getTitle()]);
             $groupForm = $form->get($schemaGroup->getName());
             foreach ($schemaGroup->getDefinitions() as $schemaDefinition) {
                 if (true === $schemaDefinition->getVirtual()) {
@@ -121,7 +121,7 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
         $data = $event->getData();
 
         if (null === $data) {
-            $data = array();
+            $data = [];
         }
 
         if (!is_array($data) && !($data instanceof \Traversable && $data instanceof \ArrayAccess)) {
@@ -184,7 +184,7 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
         }
 
         $type = sprintf('ekyna_%s_characteristic', $definition->getType());
-        $options = array();
+        $options = [];
         if ($definition->getType() == 'choice') {
             $options['identifier'] = $identifier;
         }
@@ -194,11 +194,11 @@ class CharacteristicsResizeListener implements EventSubscriberInterface
             $parentData = $characteristic->display($definition);
         }
 
-        $form->add($identifier, $type, array_merge(array(
+        $form->add($identifier, $type, array_merge([
             'property_path' => '[' . $identifier . ']',
             'label' => $definition->getTitle(),
             'parent_data' => $parentData,
-        ), $options));
+        ], $options));
     }
 
     /**

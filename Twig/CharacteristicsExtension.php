@@ -32,13 +32,13 @@ class CharacteristicsExtension extends \Twig_Extension
      * @param Manager $manager
      * @param array $options
      */
-    public function __construct(Manager $manager, array $options = array())
+    public function __construct(Manager $manager, array $options = [])
     {
         $this->manager = $manager;
 
-        $this->options = array_merge(array(
+        $this->options = array_merge([
             'template' => '@characteristics/Show/characteristics.html.twig',
-        ), $options);
+        ], $options);
     }
 
     /**
@@ -54,9 +54,9 @@ class CharacteristicsExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('render_characteristics', array($this, 'renderCharacteristics'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFunction('render_characteristics', [$this, 'renderCharacteristics'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**
@@ -67,18 +67,18 @@ class CharacteristicsExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function renderCharacteristics(CharacteristicsInterface $characteristics, array $options = array())
+    public function renderCharacteristics(CharacteristicsInterface $characteristics, array $options = [])
     {
-        $options = array_merge(array(
+        $options = array_merge([
             'table_class' => 'table table-striped table-bordered table-condensed ekyna-characteristics',
             'highlight_inherited' => false,
             'display_group' => null,
-        ), $options);
+        ], $options);
 
-        return $this->template->render(array(
+        return $this->template->render([
             'view' => $this->manager->createView($characteristics, $options['display_group']),
             'options' => $options,
-        ));
+        ]);
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace Ekyna\Component\Characteristics\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class NumberCharacteristicType
@@ -17,23 +17,23 @@ class NumberCharacteristicType extends AbstractCharacteristicType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('number', 'number', array(
+        $builder->add('number', 'number', [
             'label' => false,
             'required' => false,
             'precision' => 3,
-        ));
+        ]);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Ekyna\Component\Characteristics\Entity\NumberCharacteristic'
-        ));
+        ]);
     }
 
     /**

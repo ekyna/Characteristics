@@ -5,7 +5,7 @@ namespace Ekyna\Component\Characteristics\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class AbstractCharacteristicType
@@ -25,15 +25,15 @@ abstract class AbstractCharacteristicType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(array(
+            ->setDefaults([
                 'parent_data' => null
-            ))
-            ->setAllowedTypes(array(
-                'parent_data' => array('string', 'null')
-            ))
+            ])
+            ->setAllowedTypes([
+                'parent_data' => ['string', 'null']
+            ])
         ;
     }
 }

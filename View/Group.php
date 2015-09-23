@@ -33,6 +33,6 @@ class Group
     {
         $this->name = $name;
         $this->title = $title;
-        $this->entries = array();
+        $this->entries = [];
     }
 }

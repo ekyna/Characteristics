@@ -38,8 +38,8 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
         $builder = ManagerBuilder::create();
 
         $this->manager = $builder
-            ->setSchemaDirs(array(__DIR__ . '/Fixtures/config'))
-            ->setMetadataDirs(array())
+            ->setSchemaDirs([__DIR__ . '/Fixtures/config'])
+            ->setMetadataDirs([])
             ->setCacheDir($this->tmpDir)
             ->build();
     }

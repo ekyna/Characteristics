@@ -36,13 +36,13 @@ abstract class AbstractLoader implements LoaderInterface
             $configuration
         );
 
-        $schemas = array();
+        $schemas = [];
         foreach ($processedConfiguration as $schemaName => $schemaConfig) {
             $schema = new Schema($schemaName, $schemaConfig['title']);
             foreach ($schemaConfig['groups'] as $groupName => $groupConfig) {
                 $group = new Group($groupName, $groupConfig['title']);
                 foreach ($groupConfig['characteristics'] as $characteristicName => $characteristicConfig) {
-                    $fullName = implode(':', array($schemaName, $groupName, $characteristicName));
+                    $fullName = implode(':', [$schemaName, $groupName, $characteristicName]);
 
                     $this->validateDefinitionConfig($fullName, $characteristicConfig);
 

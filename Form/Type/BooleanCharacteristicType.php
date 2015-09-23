@@ -3,7 +3,7 @@
 namespace Ekyna\Component\Characteristics\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class BooleanCharacteristicType
@@ -17,31 +17,31 @@ class BooleanCharacteristicType extends AbstractCharacteristicType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('boolean', 'choice', array(
+        $builder->add('boolean', 'choice', [
             'label' => false,
             'required' => false,
             'expanded' => true,
-            'choices' => array(
+            'choices' => [
                 1 => 'Oui',
                 0 => 'Non',
                 null => 'NC',
-            ),
-            'attr' => array(
+            ],
+            'attr' => [
                 'class' => 'inline',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Ekyna\Component\Characteristics\Entity\BooleanCharacteristic'
-        ));
+        ]);
     }
 
     /**

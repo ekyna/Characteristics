@@ -31,9 +31,9 @@ class SchemaRegistry implements SchemaRegistryInterface
     /**
      * Constructor.
      */
-    public function __construct(array $dirs = array())
+    public function __construct(array $dirs = [])
     {
-        $this->schemas = array();
+        $this->schemas = [];
         $this->dirs = $dirs;
     }
 
@@ -80,7 +80,7 @@ class SchemaRegistry implements SchemaRegistryInterface
     {
         $this->load();
 
-        $definitions = array();
+        $definitions = [];
 
         foreach($this->schemas as $schema) {
             foreach($schema->getGroups() as $group) {
@@ -144,9 +144,9 @@ class SchemaRegistry implements SchemaRegistryInterface
             return $this;
         }
 
-        $loaderResolver = new LoaderResolver(array(
+        $loaderResolver = new LoaderResolver([
             new YamlLoader()
-        ));
+        ]);
         $loader = new DelegatingLoader($loaderResolver);
 
         $finder = new Finder();

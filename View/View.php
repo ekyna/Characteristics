@@ -18,6 +18,6 @@ class View
      */
     public function __construct()
     {
-        $this->groups = array();
+        $this->groups = [];
     }
 }

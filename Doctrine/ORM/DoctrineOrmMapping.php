@@ -13,9 +13,9 @@ final class DoctrineOrmMapping
     public static function buildCompilerPass()
     {
         $modelDir = realpath(__DIR__.'/../../Resources/config/doctrine');
-        $mappings = array(
+        $mappings = [
             $modelDir => 'Ekyna\Component\Characteristics\Entity',
-        );
+        ];
 
         return DoctrineOrmMappingsPass::createXmlMappingDriver(
             $mappings

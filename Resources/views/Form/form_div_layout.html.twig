@@ -18,7 +18,7 @@
         {% if loop.index0 > 0 %}</tr><tr>{% endif %}
         <td>{{ form_label(child) }}</td>
         <td>
-            {% if child.vars.parent_data is not sameas(null) %}<p><em>{{ child.vars.parent_data|raw }}</em></p>{% endif %}
+            {% if child.vars.parent_data is not same as(null) %}<p><em>{{ child.vars.parent_data|raw }}</em></p>{% endif %}
             {{ form_widget(child) }}
             {{ form_errors(child) }}
         </td>
@@ -48,7 +48,7 @@
 
 {% block form_label %}
     {% spaceless %}
-        {% if label is not sameas(false) %}
+        {% if label is not same as(false) %}
             {{ label|trans({}, translation_domain) }}
         {% endif %}
     {% endspaceless %}

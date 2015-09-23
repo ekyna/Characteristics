@@ -4,7 +4,7 @@ namespace Ekyna\Component\Characteristics\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class ChoiceCharacteristicType
@@ -18,7 +18,7 @@ class ChoiceCharacteristicType extends AbstractCharacteristicType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('choice', 'entity', array(
+        $builder->add('choice', 'entity', [
             'label' => false,
             'required' => false,
             'empty_value' => 'Undefined',
@@ -33,25 +33,25 @@ class ChoiceCharacteristicType extends AbstractCharacteristicType
                     ->orderBy('c.value', 'ASC')
                 ;
             }
-        ));
+        ]);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver
-            ->setDefaults(array(
+            ->setDefaults([
                 'data_class' => 'Ekyna\Component\Characteristics\Entity\ChoiceCharacteristic',
                 'identifier' => null
-            ))
-            ->setAllowedTypes(array(
+            ])
+            ->setAllowedTypes([
                 'identifier' => 'string'
-            ))
-            ->setRequired(array('identifier'))
+            ])
+            ->setRequired(['identifier'])
         ;
     }
 
