@@ -5,15 +5,15 @@
         "php": ">=5.3.3",
         "jms/metadata": "~1.0",
         "doctrine/annotations": "1.*",
-        "gedmo/doctrine-extensions": "~2.3.1",
-        "symfony/config": "~2.5",
-        "symfony/finder": "~2.5",
-        "symfony/yaml": "2.*",
-        "symfony/form": "~2.1"
+        "gedmo/doctrine-extensions": "^2.3.1",
+        "symfony/config": "~2.7",
+        "symfony/finder": "~2.7",
+        "symfony/yaml": "~2.7",
+        "symfony/form": "~2.7"
     },
     "require-dev": {
         "doctrine/orm": "~2.1",
-        "symfony/validator": "~2.0"
+        "symfony/validator": "~2.7"
     },
     "autoload": {
         "psr-4": {
