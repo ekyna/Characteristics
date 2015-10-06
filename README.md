@@ -3,8 +3,8 @@ Characteristics component
 
 Manage entity characteristics/features.
 
-## Instation / Configuration
+## Installation / Configuration
 TODO
 
 TODO :
-- Remove AbstractCharacteristics::characteristics (one-to-many) and dynamically loads datas.
+- Remove AbstractCharacteristics::characteristics (one-to-many) and dynamically load data.
