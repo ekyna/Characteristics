@@ -19,10 +19,5 @@
         "psr-4": {
             "Ekyna\\Component\\Characteristics\\": ""
         }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.3.x-dev"
-        }
     }
 }
